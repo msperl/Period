@@ -22,7 +22,7 @@ void myGeneralButtonHandlerNoHide(wxButton& but,wxEvent &)
   but.SetClientData((char*)1);
 }
 
-void FitListBox(wxListBox* listbox)
+void FitListBox(wxListBox* listbox,int rescale)
 {
     float w,h,wmax,hmax;
     wmax=-1.0f;
@@ -35,7 +35,7 @@ void FitListBox(wxListBox* listbox)
     if (wmax!=-1)
       {
 #ifdef wx_msw
-		wmax=wmax*3.0f/2.0f;
+		if (rescale) {wmax=wmax*3.0f/2.0f;}
 #endif
         // 40 is to cope with the optional Scrollbar?
         // I have no idea how to check the real size out

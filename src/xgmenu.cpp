@@ -138,6 +138,9 @@ wxMenu* CreateMenu_Fit()
 		  T_FIT_SAVE,
 		  C_FIT_SAVE);
   special->AppendSeparator();
+  special->Append(M_FIT_CLEAN,
+		  T_FIT_CLEAN,
+		  C_FIT_CLEAN);
 
   special->Append(M_FIT_EPOCH,
 		  T_FIT_EPOCH,

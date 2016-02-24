@@ -244,6 +244,12 @@
 
 #define FOU_RELABEL     "New label for this Fourier-calculation?"
 #define FOU_NOTENOUGHPOINTS "Not enough points for fourier-calculation!" 
+#define FOU_HIGHERTHANNYQUIST "The final frequency to calculate"\
+                              "("FORMAT_FREQUENCY")\n"\
+                              "is higher than the calculated "\
+                              "Nyquist frequency"\
+                              "("FORMAT_FREQUENCY")\n"\
+                              "Do you want to continue?"
 
 ////////////////////////////////////////////////////
 // The FOURIER-graph settings

@@ -15,6 +15,8 @@
 
 #include "fgeneral.h"
 
+#include "xgdial.h"
+
 void NoiseButton(wxButton& button,wxEvent&)
 {
   // close the parent frame
@@ -74,7 +76,7 @@ void NoiseSteppingHandler(wxChoice &choice, wxCommandEvent&)
 void NoiseCalculate(wxWindow *frame)
 {
   // Create Dialog-box
-  wxDialogBox dialog(frame,NOISE_CALCNOISE,TRUE,-1,-1,500,200);
+  myDialogBox dialog(frame,NOISE_CALCNOISE,TRUE,-1,-1,500,200);
   // Create entries
   wxText *point= new wxText(&dialog,NULL,
 			    NOISE_AT,

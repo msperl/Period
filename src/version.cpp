@@ -1,2 +1,2 @@
-const char *versiontxt="V1.0.2";
-const char *versiondatetxt="1998-02-20-12:01";
+const char *versiontxt="V1.0.3";
+const char *versiondatetxt="1998-03-09-16:16";

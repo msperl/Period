@@ -19,6 +19,8 @@ public:
   void LoadPeriod(myString name="");
   /// saves the table of frequencies
   void SavePeriod(myString name="");
+  /// clean the table of frequencies
+  void CleanPeriod();
   
   /// gives the number of frequencies currently active
   int GetActiveFrequencies() const { return Period.GetActiveFrequencies(); }
@@ -132,8 +134,6 @@ protected:
   void WriteFrequenciesTabulated(ostream & str,int selected);
 
 private:
-  ///
-  void CleanPeriod();
   ///
   void ReadPeriod(istream & file);
   ///

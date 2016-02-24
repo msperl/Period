@@ -78,6 +78,8 @@ private:
   wxTextWindow *TextDisp;
 };
 
+int NeedToSave();
+
 ///
 extern CMainFrame * MainFrame;
 

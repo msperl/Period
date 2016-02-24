@@ -20,7 +20,7 @@ void myGeneralButtonHandler(wxButton& but,wxEvent &);
 #define GENERAL_BUTTON_HANDLER_NOHIDE (wxFunction)&myGeneralButtonHandlerNoHide
 void myGeneralButtonHandlerNoHide(wxButton& but,wxEvent &);
 
-void FitListBox(wxListBox* listbox);
+void FitListBox(wxListBox* listbox,int rescale=1);
 
 #endif
 

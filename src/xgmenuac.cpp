@@ -75,7 +75,19 @@ int CMainFrame::FileMenu(int id)
       break;
       
     case M_FILE_QUIT:
-      if (myProject.HasChanged())
+		if (NeedToSave()==FALSE)
+		{ return TRUE;}
+       delete this;
+      break;
+    default:
+      return FALSE;
+    }
+  return TRUE;
+}
+
+int NeedToSave()
+{     
+	if (myProject.HasChanged())
 	{
 	  if (myProject.Confirm(DIALOG_SAVE_PROJECT_FIRST)!=0)
 	    {
@@ -85,7 +97,7 @@ int CMainFrame::FileMenu(int id)
 	      if (myProject.HasChanged())
 		{
 		  // not saved...
-		  return TRUE;
+		  return FALSE;
 		}
 	    }
 	  }
@@ -93,13 +105,5 @@ int CMainFrame::FileMenu(int id)
 	  myProject.NoChanges();
 	  // now clean everything...
 	  myProject.NewProject();
-      delete this;
-      break;
-
-    default:
-      return FALSE;
-    }
-  return TRUE;
+	  return TRUE;
 }
-
-

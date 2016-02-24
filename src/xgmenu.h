@@ -40,8 +40,9 @@
 
 ////////////////////////////////////////////////
 
-#define M_FIT_LOAD   125
-#define M_FIT_SAVE   126
+#define M_FIT_LOAD   256
+#define M_FIT_SAVE   257
+#define M_FIT_CLEAN   255
 
 #define M_FIT_EPOCH   250
 #define M_FIT_REFIT   251

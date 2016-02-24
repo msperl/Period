@@ -1,0 +1,58 @@
+% general variables
+\newcommand{\periodnamens}[0]{Period98}
+\newcommand{\version}[0]{1.0.2}
+\newcommand{\wxver}[0]{1.66}
+
+% URL-directions
+\newcommand{\periodftp}[0]{ftp://dsn.astro.univie.ac.at/pub/Period98/current}
+\newcommand{\periodftpincoming}[0]{ftp://dsn.astro.univie.ac.at/incoming}
+\newcommand{\periodhome}[0]{http://dsn.astro.univie.ac.at/period98}
+\newcommand{\periodmail}[0]{period98@dsn.astro.univie.ac.at}
+\newcommand{\periodnt}[0]{P98inst.exe}
+\newcommand{\wxxtftp}[0]{ftp://dsn.ast.univie.ac.at/pub/wxwin}
+
+\newcommand{\DSNHOME}[0]{http://dsn.ast.univie.ac.at/}
+\newcommand{\WETHOME}[0]{http://ceti.as.utexas.edu/wetpage.html}
+\newcommand{\STACCHOME}[0]{http://www.obs.aau.dk/~srf/projects/STACC.html}
+
+% composite variables
+
+\newcommand{\periodname}[0]{\periodnamens\space}
+\newcommand{\period}[0]{{\bf \periodname}}
+\newcommand{\periodfull}[0]{\periodnamens-\version}
+
+\newcommand{\wxxtbase}[0]{wxxt-\wxver}
+\newcommand{\wxxtlib}[0]{\wxxtbase.tgz}
+\newcommand{\wxxtliburl}[0]{\wxxtftp/\wxxtlib}
+\newcommand{\wxxtutils}[0]{utils.tgz}
+\newcommand{\wxxtutilsurl}[0]{\wxxtftp/\wxxtutils}
+
+\newcommand{\periodntftp}[0]{\periodftp/\periodnt}
+\newcommand{\periodunixversion}[0]{\periodftp/\periodfull}
+\newcommand{\periodsrc}{\periodfull.tgz}
+\newcommand{\periodsrcurl}{\periodftp/\periodsrc}
+\newcommand{\perioddoc}{{\periodnamens}doc-\version.tgz}
+\newcommand{\perioddocurl}{\periodftp/\perioddoc}
+
+\newcommand{\toedit}[0]{{\large XXXX TO EDIT XXXX}}
+
+\newcommand{\ftplinux}[0]{\item \urlref{i386 - Linux}{\periodunixversion-i386-linux-2.0}}
+\newcommand{\ftposf}[0]{\item \urlref{Alpha - OSF1}{\periodunixversion-alpha-osf-4.0}}
+\newcommand{\ftpsgi}[0]{\item \urlref{SGI - IRIX}{\periodunixversion-mips-IRIX-6.3}}
+
+\newcommand{\periodbinaries}[0]{\ftplinux \ftposf \ftpsgi}
+
+% defines
+\newcommand{\menu}[1]{{\it menu ``#1''}}
+\newcommand{\menuentry}[1]{{\it menu entry ``#1''}}
+\newcommand{\button}[1]{{{\bf ``#1''} button}}
+\newcommand{\note}[1]{{\noindent \normalbox{\noindent {\Large \bf Note: } #1}}}
+\newcommand{\myhead}[3]{\setheader{#1}{#2}{#3}{#3}{#2}{#1}}
+\newcommand{\myfoot}[3]{\setfooter{#1}{#2}{#3}{#3}{#2}{#1}}
+\newcommand{\normskip}[0]{\parskip=10pt}
+\newcommand{\myitemize}[1]{ \parskip=0pt \begin{itemize} \itemsep=0pt {#1} \end{itemize} \normskip}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "period98"
+%%% End: 

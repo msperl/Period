@@ -15,6 +15,7 @@
 #include "ldialtxt.h"
 #include "xgeneral.h"
 #include "wxtxtprint.h"
+#include "xgdial.h"
 
 // ADJUST
 
@@ -102,6 +103,7 @@ void AdjustSelectionCheck(wxCheckBox &, wxEvent& )
 
 void AdjustFillBox(int id)
 {
+  int dummy=5;
   AdjustWhat=id;
   AdjustListbox->Clear();
   int ShallWeUseWeights=UseWeightedData->GetValue();
@@ -118,6 +120,7 @@ void AdjustFillBox(int id)
 	  AdjustListbox->Append(line.chars(),(char*)identity);
 	}
     }
+  dummy+=6;
 }
 
 void AdjustData(wxWindow *Frame)
@@ -125,7 +128,7 @@ void AdjustData(wxWindow *Frame)
   // calculate Zeropoints
   myProject.CalcAverage();
   // Create Dialog
-  wxDialogBox dialog(Frame,ADJ_DAT_TITLE,TRUE,-1,-1,600,340);
+  myDialogBox dialog(Frame,ADJ_DAT_TITLE,TRUE,-1,-1,600,340);
   // sets the Button-font
   wxFont *button=wxTheFontList->FindOrCreateFont(
 						 12,
@@ -232,7 +235,7 @@ void AdjustData(wxWindow *Frame)
 
 void SubDivideData(wxWindow *frame)
 {
-  wxDialogBox dialog(frame,ADJ_SUB_TITLE,TRUE);
+  myDialogBox dialog(frame,ADJ_SUB_TITLE,TRUE);
   // Gapsize
   wxText *Gap= new wxText(&dialog,NULL,ADJ_SUB_GAP,
 			  "            ");
@@ -324,7 +327,7 @@ void SubDivideDoIt(wxButton& calc,wxEvent &)
 
 void RenameSelection(wxWindow *Frame)
 {
-  wxDialogBox dialog(Frame,ADJ_REN_TITLE,TRUE);
+  myDialogBox dialog(Frame,ADJ_REN_TITLE,TRUE);
   // NamePrefix
   wxText *Name= new wxText(&dialog,NULL,ADJ_REN_WHAT,
 			   "              ",-1,-1);

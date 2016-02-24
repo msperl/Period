@@ -1,0 +1,83 @@
+Period98 fas the following basic structure:
+
+Data and calculation-layer
+Project-layer
+User Interface-layer
+
+All data accesses from the UI-layer calls the Project layer,
+which itself will then place the appropriate calls to
+the datalayer.
+
+The file-structure of the source is as follows:
+
+Data and Calculation-layer:
+===========================
+
+d*.cpp d*.h: these files correspond to the Data-layer
+
+dnoise.cpp, dnoise.h: are the implementation of the
+                      noise-calculations
+dfroutin.cpp, dfroutin.h: are the implementation of
+                          the fourier-calculation
+dproutin.cpp: is the implementation of the least
+              square fit routine 
+              (after Bevington,1969 ,
+               Data reduction and Error analysis)
+
+Project-layer:
+==============
+
+p*.cpp, p*.h: correspond to the Project layer
+f*.h: includes the definitions for the text
+      to write in the protocol
+
+User Interface-layer:
+=====================
+x*.cpp, x.h: corespond to the UI-layer
+ldialtxt.h: defines most messages that the UI
+            will display
+lmenu.h: defines the text of the menus displayed in P98
+helpref: defines the labels needed to connect to the
+         help-system
+
+Extensions to the wxWin library:
+================================
+wx*.h wx*.cpp
+
+General class definitions:
+==========================
+str.h, str.cpp: a simple string-class
+complex.h, complex.cpp: define a compex variable type
+list.h: some list-like-classes
+matrix.h, matrix.cpp: a class that defines matrices
+                      and some operations with these
+
+Other files:
+============
+README: this file
+Makefile, Makefile.in: these are the files used
+                       by make to compile P98
+error.h: defines some Macros for error-handling
+mscomp.cpp: defines user and date for W95 binaries
+mswdefs.h: defines some functions, that are not 
+           readily available in MSVC's libc.
+constant.h: defines some constants
+advanced.h: defines a Variable for which level
+            of advanced use should be used
+            (needed only for not-export-functions,
+             which are implemented, but only
+             accessible through the UI, 
+             when the -a flag is set when calling P98)
+version.h, Version.cpp, Version: these define the
+             version of Period98
+period98.rc: defines the resources needed to
+             compile Period98 for Win95
+Period98.sin: shellscript-template to start Period98
+              in Unix
+
+
+Directories:
+============
+samples: caontains all sample files for P98
+bitmaps: contains all bitmaps needed for P98
+noneed: contains code not needed to compile

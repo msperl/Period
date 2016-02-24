@@ -39,6 +39,10 @@ public:
 
   /// calculates a steprate for a given quality
   double GetStepRate(CFourier::StepQuality qstep, double step) const;
+
+  /// performs basic checks on the Frequencies
+  int FourierCheck(double *from, double *to, int *weight);
+
   /// performs a fourier-calculation in the range [from:to] 
   /// using an nominal steping of step 
   /// (if negative the real value is computed),

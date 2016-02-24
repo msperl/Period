@@ -195,8 +195,9 @@ void CMainFrame::OnSize(int w, int h)
 
 Bool CMainFrame::OnClose()
 {
+  return NeedToSave();
   //return wxFrame::OnClose();
-  return TRUE;
+  //return TRUE;
 }
 
 void CMainFrame::SetInfo(char * text)

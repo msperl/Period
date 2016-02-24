@@ -14,6 +14,8 @@
 #include "xpspecia.h"
 #include "xgeneral.h"
 #include "fperiod.h"
+#include "wxtxtprint.h"
+#include "xgdial.h"
 
 void OnSpecialDialogButton(wxButton& cancel, wxEvent&)
 {
@@ -28,7 +30,7 @@ int SpecialDialog(wxWindow *frame)
   int i;
 
   // create a dialog
-  wxDialogBox dialog(frame,SPE_SEL,TRUE,
+  myDialogBox dialog(frame,SPE_SEL,TRUE,
 		     -1,-1,510,350);
 
   (void) new wxMessage(&dialog,SPE_MSG);
@@ -225,7 +227,7 @@ void OnAmpVarButton(wxButton& but, wxEvent&)
 
 int *AmplitudeVariation(wxWindow* frame,int *freqs, int* what, CalcMode *mode)
 {
-  wxDialogBox dialog(frame,AMP_TITLE,TRUE,-1,-1,340,300);
+  myDialogBox dialog(frame,AMP_TITLE,TRUE,-1,-1,340,300);
   // Create entries
   // what column
   myString StrOptions[4];
@@ -341,10 +343,39 @@ int *AmplitudeVariation(wxWindow* frame,int *freqs, int* what, CalcMode *mode)
   return NULL;
 }
 
+char * AmpVarListText=NULL;
+
+void OnAmpVarSaveButton(wxButton&, wxEvent&)
+{
+  char *filename=wxFileSelector(ADJ_DAT_SAVE);
+  if (filename) {
+    ofstream file(filename);
+    file<<AmpVarListText<<endl;
+  }
+}
+
+void OnAmpVarPrintButton(wxButton&, wxEvent&)
+{
+  // print file
+  {
+    wxPrintText(NULL,"",AmpVarListText,
+		50,
+#ifdef wx_msw
+		16,
+#else
+		12,
+#endif
+		wxMODERN,wxNORMAL,wxNORMAL
+		);
+  }
+
+}
+
 void AmplitudeVariationDisplay(wxWindow * frame,char *txt)
 {
+  AmpVarListText=txt;
   // create the dialog-box
-  wxDialogBox dialog(frame,AMP_RESULT,TRUE,
+  myDialogBox dialog(frame,AMP_RESULT,TRUE,
 		     -1,-1,520,290);
   // sets the Button-font
   wxFont *button=wxTheFontList->FindOrCreateFont(
@@ -393,10 +424,24 @@ void AmplitudeVariationDisplay(wxWindow * frame,char *txt)
 
   dialog.NewLine();
   
-  wxButton *tmp= new wxButton(&dialog,
-		      (wxFunction)&OnAmpVarButton,
-		      OKAY,
-		      -1,-1,width-20,-1);
+  wxButton *tmp;
+  // the Save button
+  tmp= new wxButton(&dialog,
+		    (wxFunction)&OnAmpVarSaveButton,
+		    ADJ_DAT_SAVE,
+		    -1,-1,(width-20)/3,-1);
+  tmp->SetClientData(NULL);
+  // the Print button
+  tmp= new wxButton(&dialog,
+		    (wxFunction)&OnAmpVarPrintButton,
+		    ADJ_DAT_PRINT,
+		    -1,-1,(width-20)/3,-1);
+  tmp->SetClientData(NULL);
+  // the OK button
+  tmp= new wxButton(&dialog,
+		    (wxFunction)&OnAmpVarButton,
+		    OKAY,
+		    -1,-1,(width-20)/3,-1);
   tmp->SetClientData(NULL);
   // now fit the display
   dialog.Fit();
@@ -410,7 +455,7 @@ void AmplitudeVariationDisplay(wxWindow * frame,char *txt)
 void EpochDialog(wxWindow *Frame)
 {
   // create the dialog-box
-  wxDialogBox dialog(Frame,EPO_TITLE,TRUE,
+  myDialogBox dialog(Frame,EPO_TITLE,TRUE,
 		     -1,-1,520,290);
   // sets the Button-font
   wxFont *button=wxTheFontList->FindOrCreateFont(

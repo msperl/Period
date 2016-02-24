@@ -70,10 +70,10 @@ wxPeriProject::wxPeriProject()
   HelpInstance->Initialize(APPNAME);
   // install signal handler
 //#ifndef wx_msw
-//#ifndef NO_USE_SIGNAL_HANDLER
+#ifndef NO_USE_SIGNAL_HANDLER
   (void) signal(SIGFPE , Signal_Handler);  
   (void) signal(SIGSEGV, Signal_Handler);
-//#endif
+#endif
 //#endif
 }
 
@@ -147,7 +147,10 @@ void wxPeriProject::WriteSpecificProtocol(ostream &ost)
   // output text
   ost<<ptr<<endl;
   // delete text
-  delete ptr;
+  // this may produce some memory-leaks with mswin, but 
+  // to be on the safe side, as Xt does hickup on this,
+  // it is best to leave it like this...
+  // delete ptr;
 }
 
 void wxPeriProject::InformUser(char *text)

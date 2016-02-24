@@ -162,16 +162,12 @@ char* CProject::GetStepQualityLabel(CFourier::StepQuality mode)
   return QUALITY_FOURIER_CUSTOM;
 }
 
-void CProject::CalculateFourier(myString title,
-				double from,double to,
-				CFourier::StepQuality stepq,double step,
-				DataMode Mode,
-				CompactMode Compact,int weight)
+int CProject::FourierCheck(double *from, double *to, int *weight)
 {
   if (Timestring.GetSelectedPoints()<5)
   {
     InformUser(FOU_NOTENOUGHPOINTS);
-    return;
+    return 1;
   }
   // check if weights should be used
   if (!Period.GetUseWeight())
@@ -179,10 +175,28 @@ void CProject::CalculateFourier(myString title,
       if (Timestring.GetSelectedPoints()!=Timestring.GetWeightSum())
 	{
 	  if (Confirm(DIALOG_USE_WEIGHTS)==1)
-	    { weight=1; }
+	    { *weight=1; }
 	}
     }
+  // check if to is higher than nyquist
+  if (*to>GetNyquist())
+    {
+      char text[2048];
+      sprintf(text,FOU_HIGHERTHANNYQUIST,*to,GetNyquist());
+      if (!Confirm(text))
+	{return 1;}
+    }
+  return 0;
+}
 
+void CProject::CalculateFourier(myString title,
+				double from,double to,
+				CFourier::StepQuality stepq,double step,
+				DataMode Mode,
+				CompactMode Compact,int weight)
+{
+  // check for ranges
+  if (FourierCheck(&from,&to,&weight)) { return;}
   Waiting(1,1);
 
   // check for equality
@@ -334,6 +348,8 @@ int CProject::CalculateNoiseSpectra(double from, double to, double CalcDist,
 				    DataMode Mode, int weight,
 				    double *freq,double *noise)
 {
+  // check for ranges
+  if (FourierCheck(&from,&to,&weight)) { return -1;}
   Waiting(1,1);
 
   char tempprot[8192];
@@ -460,6 +476,7 @@ double CProject::CalculateNoise(double point, double box,
 				CFourier::StepQuality stepq,double step,
 				DataMode Mode,int weight)
 {
+  if (FourierCheck(&point,&point,&weight)) { return -1.0;}
   Waiting(1,1);
   // Here goes the work...
   // write the start of the protocol

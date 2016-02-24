@@ -72,6 +72,8 @@
 #define C_FIT_LOAD   "Loads a list of frequencies removing the old ones"
 #define T_FIT_SAVE   "Export frequencies as"
 #define C_FIT_SAVE   "Saves all frequencies"
+#define T_FIT_CLEAN  "Clean all frequencies"
+#define C_FIT_CLEAN  "Clean all frequencies"
 #define T_FIT_EPOCH   "Epochs"
 #define C_FIT_EPOCH   "Calculate epochs for the active frequencies"
 #define T_FIT_REFIT   "Recalculate residuals"

@@ -13,6 +13,9 @@ int CMainFrame::FitMenu(int id)
     case M_FIT_SAVE:
       myProject.SavePeriod();
       break;
+    case M_FIT_CLEAN:
+      myProject.CleanPeriod();
+      break;
     case M_FIT_PREDICT:
       // Update data from original data
       PredictAmplitude(this);

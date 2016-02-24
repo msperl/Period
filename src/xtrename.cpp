@@ -15,6 +15,7 @@
 #include "xgeneral.h"
 #include "xtrename.h"
 #include "fgeneral.h"
+#include "xgdial.h"
 
 void DialogDeletePoint(int row)
 {
@@ -25,7 +26,7 @@ void DialogDeletePoint(int row)
 void DialogRelabelPoint(int row)
 {
   // create a dialog and ask user
-  wxDialogBox dialog(NULL,DIAL_RELABEL_TIT,TRUE);
+  myDialogBox dialog(NULL,DIAL_RELABEL_TIT,TRUE);
   // write the message
   {
     char msgtxt[256];
@@ -66,7 +67,8 @@ void DialogRelabelPoint(int row)
   wxButton *OK=new wxButton(&dialog,GENERAL_BUTTON_HANDLER,OKAY);
   OK->SetClientData(0);
   OK->SetDefault();
-  (void) new wxButton(&dialog,GENERAL_BUTTON_HANDLER,CANCEL);
+  wxButton *Cancel= new wxButton(&dialog,GENERAL_BUTTON_HANDLER,CANCEL);
+  Cancel->SetClientData(0);
   
   // fit the dialog
   dialog.Fit();
@@ -89,7 +91,7 @@ void DialogRelabelPoint(int row)
 void DialogDeletePointInfo(wxWindow *Frame)
 {
   // create dialog
-  wxDialogBox dialog(Frame,DIAL_DELPNT_TIT,TRUE);
+  myDialogBox dialog(Frame,DIAL_DELPNT_TIT,TRUE);
   // get relevant values
   int what;
   myString name;

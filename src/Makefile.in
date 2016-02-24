@@ -25,7 +25,7 @@ dtimepnt.o dtimestr.o dtnames.o \
 dcolors.o
 
 GUISRCS =\
-wxtxtprint.cpp \
+xgdial.cpp wxtxtprint.cpp \
 \
 xmain.cpp xgprojec.cpp xgeneral.cpp \
 xgmainfr.cpp xgmenu.cpp xgmamenu.cpp xgmenuac.cpp xgdialog.cpp \
@@ -35,7 +35,7 @@ xpdialog.cpp xpgraph.cpp xpfreq.cpp xppredic.cpp xpspecia.cpp xpmenu.cpp \
 xtdialog.cpp xtgraph.cpp xttable.cpp xtadjust.cpp xtrename.cpp xtmenu.cpp \
 xlmenu.cpp
 GUIOBJS =\
-wxtxtprint.o \
+xgdial.o wxtxtprint.o \
 \
 xmain.o xgprojec.o xgeneral.o \
 xgmainfr.o xgmenu.o xgmamenu.o xgdialog.o xgmenuac.o\

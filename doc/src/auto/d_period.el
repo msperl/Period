@@ -23,6 +23,7 @@
      "period.epochs.dialog"
      "period.import"
      "period.export"
+     "period.cleanfrequencies"
      "period.phase"
      "period.phase.window"
      "period.phase.binning"

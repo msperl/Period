@@ -1,3 +1,4 @@
+#include "xgdial.h"
 #include "xggraph.h"
 #include "xgmenu.h"
 #include "xgeneral.h"
@@ -17,7 +18,7 @@ void CMyGraph::OnMenuCommand(int id)
       break;
     case M_ZOOM_DISPREG:
       {
-	wxDialogBox dialog(this,ZOOM_TITLE,TRUE);
+	myDialogBox dialog(this,ZOOM_TITLE,TRUE);
 	// now the lines:
 	char txt[256];
 	int x,y,xmax;

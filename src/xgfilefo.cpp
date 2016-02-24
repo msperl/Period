@@ -18,6 +18,7 @@
 
 #include "xgmainfr.h"
 #include "ldialtxt.h"
+#include "xgdial.h"
 
 myString wxPeriProject::FileFormat(myString format, int Phase)
 {
@@ -244,7 +245,7 @@ myString wxPeriProject::FileFormat(myString fifoformatstr,myString filename)
   }
     
   // create Dialog
-  wxDialogBox dialog(NULL,WXPROJ_FILEFOR,TRUE);
+  myDialogBox dialog(NULL,WXPROJ_FILEFOR,TRUE);
   // Set Dialog Fonts
   // sets the Button-font
   wxFont *button=wxTheFontList->FindOrCreateFont(
@@ -324,7 +325,7 @@ myString wxPeriProject::FileFormat(myString fifoformatstr,myString filename)
   // now fill the data in...
   fifoFillInData(1);
   // refit listbox
-  FitListBox(fifolist);
+  FitListBox(fifolist,0);
   dialog.NewLine();
   // now add OK and CANCEL Button
   wxButton *Ok=new wxButton(&dialog,GENERAL_BUTTON_HANDLER,OKAY);

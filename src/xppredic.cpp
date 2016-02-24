@@ -9,6 +9,7 @@
  * Copyright:   (c) 1996-1998, Martin Sperl
  */
 #include <wx.h>
+#include "xgdial.h"
 
 #include "xgprojec.h"
 #include "xppredic.h"
@@ -32,7 +33,7 @@ void PredictQUIT(wxButton& calc,wxEvent &)
 
 void PredictAmplitude(wxWindow *Frame)
 {
-  wxDialogBox dialog(Frame,PREDICT_DATE,TRUE,-1,-1,300,130);
+  myDialogBox dialog(Frame,PREDICT_DATE,TRUE,-1,-1,300,130);
   char tmp[256];
   double start=0;
   if (myProject.GetSelectedPoints()!=0)
@@ -78,7 +79,7 @@ void PredictAmplitude(wxWindow *Frame)
 
 void CreateArtificialData(wxWindow *Frame)
 {
-  wxDialogBox dialog(Frame,PREDICT_ART,TRUE,-1,-1,300,220);
+  myDialogBox dialog(Frame,PREDICT_ART,TRUE,-1,-1,300,220);
 
   // Create Dialogs
   (void) new wxMessage(&dialog,PREDICT_BEG);

@@ -12,6 +12,7 @@
 #include "ldialtxt.h"
 #include "xgsize.h"
 #include "xgmenu.h"
+#include "xgdial.h"
 
 t_File::t_File(CProject* project,wxWindow* parent,int x0, int y0, int w, int h)
   :myFile(project,DISPLAY_DIALOG_TIMESTRING,parent,x0,y0,w,h,1)
@@ -235,7 +236,7 @@ void t_File::EditSettings(int i)
       myString weightstr=myProject.GetIDNameWeight(i,ID);
       char* colorstr=myProject.GetIDNameColor(i,ID);
       // Create a Dialog-box
-      wxDialogBox dialog(this->GetGrandParent(),
+      myDialogBox dialog(this->GetGrandParent(),
 		  TIME_CHANGE,TRUE,-1,-1,300,90);
       // Create a name-display
       (void) new wxMessage(&dialog,TIME_NAME);
@@ -433,21 +434,48 @@ void t_File::UpdateSelected()
     }
 }
 
+struct myentry
+{
+public:
+int id;
+int select;
+myString string;
+};
+
+int SortMyEntry(const void *t1,const void *t2)
+{
+  myString tmp1=((myentry *)t1)->string;
+  myString tmp2=((myentry *)t2)->string;
+  if (tmp1>tmp2) return 1;
+  if (tmp1<tmp2) return -11;
+  return 0;
+}
+
 void t_File::FillList(wxListBox * lbox, int id)
 {
+  int i;
   lbox->Clear();
   int entries=myProject.NumberOfNames(id);
-  int i;
+  // create sorted table
+  myentry* array=new myentry[entries];
+  for (i=0;i<entries;i++)
+    {
+      array[i].string=myProject.GetIndexNameStr(id,i);
+      array[i].id    =myProject.GetIndexNameID(id,i);
+      array[i].select=myProject.GetIndexNameSelect(id,i);
+    }
+  // sort array
+  qsort(array,entries,sizeof(myentry),SortMyEntry);
   // fill list
   for(i=0;i<entries;i++)
     {
-      lbox->Append(myProject.GetIndexNameStr(id,i).chars(),
-		   (char*)myProject.GetIndexNameID(id,i));
+      lbox->Append(array[i].string.chars(),
+		   (char*)array[i].id);
     }
   // select list
   for(i=0;i<entries;i++)
     {
-      lbox->SetSelection(i,myProject.GetIndexNameSelect(id,i));
+      lbox->SetSelection(i,array[i].select);
     }
 }
 

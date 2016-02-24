@@ -7,6 +7,9 @@ FINALEPS=~ftp/pub/Period98/current/doc
 
 TEX_FILE=period98
 TEX_ADDITIONAL=\
+ src/p98def.tex\
+ src/p98main.tex\
+ src/p98appe.tex\
  src/copyright.tex\
  src/intro.tex\
  src/install.tex\
