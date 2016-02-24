@@ -1,14 +1,14 @@
-DISTRIBUTE_ADDITIONAL=../Period98Package
-include ../../setup/general/makeapp
+SOURCES= \
+  fourier.cpp \
+  dfourier.cpp \
+  dfcalc.cpp \
+  dtimepnt.cpp \
+  dtimestr.cpp \
+  dperipnt.cpp \
+  dtnames.cpp \
+  str.cpp \
+  dcolors.cpp \
+  dfroutin.cpp
 
-SHELL=/bin/sh
-
-reversion::
-	@(VERSION=`cat Version`;\
-	 DATE=`date +'%Y-%m-%d-%H:%M'`;\
-	 QUOTE='"';\
-	 echo "const char *versiontxt=$${QUOTE}V$$VERSION$$QUOTE;" \
-	 > version.cpp;\
-	 echo "const char *versiondatetxt=$$QUOTE$$DATE$$QUOTE;" \
-	 >> version.cpp;\
-	)
+fourier: $(SOURCES)
+	c++ -O3 -I. -o fourier $(SOURCES)
