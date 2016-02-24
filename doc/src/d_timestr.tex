@@ -1,0 +1,402 @@
+\section{Time string}%
+\label{timestring.detailed}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Time string folder}%
+\label{timestring.folder}
+\begin{figure}[hb]
+$$\image{0cm;0cm}{TFolder.eps}$$%
+\caption{The ``time string'' folder}%
+\label{timestring.folder.dialog}
+\end{figure}
+
+This folder shows all the required information regarding the time string.
+
+{\bf Current data file}: 
+gives the full pathname 
+of the files from which the data have been imported.
+
+{\bf Points selected}: 
+gives the number of points that are selected.
+
+{\bf Total points}: 
+gives the total number of points in the time string.
+
+{\bf Start time}:
+gives the start time of the selected timestring.
+
+{\bf Time string is in magnitudes}:
+informs \periodname that the timestring is in magnitudes 
+(i.e. the scale is inverted for plots, etc\ldots)
+
+{\bf End time}:
+gives the end time of the selected timestring.
+
+There are {\bf 4 list boxes with buttons on top} side by side,
+each of which represents one attribute of the time string.
+
+Please note that the identifiers for each attribute can be changed
+to fit the requirements by pressing on the button on top of each list box.
+
+{\bf Edit Buttons below the list boxes:}
+these allow changes to some settings in the currently 
+highlighted labels of an attribute - i.e: this allows changes to
+the weight and color of this label.
+See also \helpref{Edit label}{timestring.edit}.
+
+The 4 Buttons in the bottom have the following meaning:
+\myitemize{
+\item{\bf Display data}: 
+Displays the selected time string with the full information regarding 
+residuals, attribute, weights, etc. in a 
+\helpref{window}{timestring.table}.
+\item{\bf Import}:
+Imports a time string from file.
+See also \helpref{Import Time string}{timestring.import}
+\item{\bf Export}:
+Exports the selected time string to a file.
+See also \helpref{Export Time string}{timestring.export}
+\item{\bf Display Graph}:
+Displays the selected time string in a 
+\helpref{window}{timestring.graph} with the current fit.
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Import time string}%
+\label{timestring.import}
+
+There are the following possibilities to import a time string:
+\myitemize{
+\item the \button{Import} is pressed in the time string folder
+\item the \menuentry{Import time string} in the 
+        \menu{time string} has been selected
+\item the \menuentry{Append time string} in the \menu{time string}
+        has been selected. In this case the old time string does not
+        get erased but the next time string is appended to the current
+        one.
+}
+
+A common file selector dialog will open up to select a file to import.
+Then the file is parsed for its contents and finally the 
+\helpfigref{Import format dialog}{timestring.import.dialog} is opened.
+\begin{figure}[h]
+$$\image{0cm;0cm}{TImport.eps}$$%
+\caption{The ``import format'' dialog}%
+\label{timestring.import.dialog}
+\end{figure}
+
+This dialog lists the first few lines  of the time string to read in 
+and shows them along with some defaults
+for each column, guessed from the structure of the data in the file.
+Only 4 columns are displayed at every given time, but scrolling is 
+achieved by pressing the buttons to the left and right of the list box.
+
+Heading each column is a choice item with the following possibilities:
+\myitemize{
+\item Time
+\item Observed
+\item Adjusted
+\item Residuals to Observed
+\item Residuals to Adjusted
+\item Calculated
+\item Per point weight
+\item Attribute 1 - depending on the label given
+\item Attribute 2 - depending on the label given
+\item Attribute 3 - depending on the label given
+\item Attribute 4 - depending on the label given
+\item ignore
+}
+These can be changed to reflect the actual data to read in.
+Thus it is possible to ignore certain columns or 
+to read in strangely formatted files.
+
+\note{Please note that lines starting with ``\#'', ``;'', ``\%'' 
+are assumed to be comment lines and are ignored!}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Export time string}%
+\label{timestring.export}
+
+To reexport the {\it selected} time string there are
+two possibilities:
+\myitemize{
+\item the \button{Export} is pressed in the time string folder
+\item the \menuentry{Export time string} in the \menu{time string}
+        has been selected
+}
+This time the output file format is specified using a 
+multiple selection list in the 
+\helpfigref{export format dialog}{timestring.export.dialog}.
+
+\begin{figure}[h]
+$$\image{0cm;0cm}{TExport.eps}$$%
+\caption{The ``export format'' dialog}%
+\label{timestring.export.dialog}
+\end{figure}
+
+This way it is possible to extract only certain 
+parts of the full information that each point contains.
+
+\note{In this case the sequence is predetermined 
+and always top to bottom. After pressing OK, a dialog to save to 
+file will be shown.}
+
+After pressing the \button{Ok} a dialog to save to a file will be shown.
+
+\note{As a final note: The time string will be written out in the same 
+sequence as it had been read in. So reading in unsorted data
+and re-exporting it again will not result in a sorted time string.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Combine substrings}%
+\label{timestring.rename}
+
+It is possible to combine the selection and to give it a common
+attribute. To do so, the \menuentry{Combine substrings} in the 
+\menu{time string} has to be selected.
+
+The \helpfigref{Combine substrings dialog}{timestring.rename.dialog},
+which opens up gives the possibility to enter a new common label and 
+select which attribute the label should belong to.
+\begin{figure}[h]
+$$\image{0cm;0cm}{TRename.eps}$$%
+\caption{The ``combine substrings'' dialog}%
+\label{timestring.rename.dialog}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Subdivide selection}%
+\label{timestring.subdivide}
+
+Often a time string contains gaps due to a specific observational pattern.
+In this case, \period offers the possibility to split a currently selected
+time string into subsets by finding gaps that fulfill a requirement and 
+splitting it up there.
+
+To do so the \menuentry{subdivide time string} in the \menu{time string}
+has to be selected. Then the 
+\helpfigref{subdivide selection dialog}{timestring.subdivide.dialog}
+will be displayed and the relevant data for this operation can be entered:
+\myitemize{
+\item {\bf minimum size of gap} between 2 consecutive points
+        at which to make a subdivision.
+\item what {\bf attribute} the separations should belong to.
+\item what is the {\bf label prefix} from which to create a final label.
+\item should a {\bf running counter} or the integer part
+        of the time of its first new element 
+        be added to the label prefix to give the resulting label.
+}
+
+\begin{figure}[h]
+$$\image{0cm;0cm}{TSubdivide.eps}$$%
+\caption{The ``subdivide selection'' dialog}%
+\label{timestring.subdivide.dialog}
+\end{figure}
+
+\note{To reconvert the subdivided timestring, removing all the generated
+labels and replacing them with a new common one, the 
+\helpref{Combine substrings}{timestring.rename} option should be used.
+A new label should be entered and as attribute the attribute
+where all the split labels are should be entered.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Adjust selection}%
+\label{timestring.adjust}
+Often different subsets of data can have marginally different 
+zero point offsets, which may be due to different instrumentation or
+not fully ideal situation for observation. (In astronomy, different
+seeing for each night may be an example for this, or telescopes 
+at different sites around the world.)
+
+These zero point variations produce noise in the low frequency domain, which
+can be reduced with this technique.
+
+To compensate for these effects the \menuentry{Adjust selection} in the 
+\menu{time string} has to be selected. Before this, a fit to the data should be
+done, as this routine uses the residuals to calculate the residual
+zero points for the different labels of an attribute.
+
+The 
+\helpfigref{adjust zero point for selection dialog}{timestring.adjust.dialog}
+has four buttons on top with which the selection of the attribute 
+to be investigated can be chosen.
+\begin{figure}[h]
+$$\image{0cm;0cm}{TAdjust.eps}$$%
+\caption{The ``adjust zero point for selection'' dialog}%
+\label{timestring.adjust.dialog}
+\end{figure}
+
+The {\bf use weights} check box indicates whether weighted residuals have been 
+used to calculate the average and sigma.
+The list box lists all the labels of the selected attribute along with the 
+average, sigma and number of points for this label. 
+
+If the last column
+contains a ``yes'', this means that some or all of the points have already
+been adjusted before.
+
+To adjust some labels, they should be selected in the list box and then the 
+\button{Ok} should be pressed.
+After each adjustment, a new fit should be calculated to reflect the new 
+situation of the data. 
+
+The current list can also be printed by pressing the \button{Print} 
+or can be saved to file by pressint the \button{Save}.
+
+\note{Please do not forget to select the adjusted data
+from this point on for calculations.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Edit label}%
+\label{timestring.edit}
+This  
+\helpfigref{edit label dialog}{timestring.edit.dialog}
+is shown when one of the \button{Edit}%
+s in the 
+\helpref{time string folder}{timestring.folder}
+has been pressed. It offers the possibility
+to change the color and weight
+for each selected label in the attribute.
+\begin{figure}[h]
+$$\image{0cm;0cm}{TEdit.eps}$$%
+\caption{The ``edit label'' dialog}%
+\label{timestring.edit.dialog}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Time string table}%
+\label{timestring.table}
+When the \button{Display table} in the 
+\helpref{time string folder}{timestring.folder}
+is pressed, a
+\helpfigref{window}{timestring.table.window}
+is shown. This displays the selected time string in every detail.
+A printout of this table is possible by selecting the \menuentry{Print}
+in the \menu{File} of that window.
+The attribute labels for a certain point can be edited by clicking with the 
+right mouse button in that line. 
+(See \helpfigref{Change attribute label}{timestring.changeattribute.dialog})
+
+\begin{figure}[h]
+$$\image{0cm;0cm}{TTable.eps}$$%
+\caption{The ``time string data'' window}%
+\label{timestring.table.window}
+\end{figure}
+
+\note{With the {\it control key on the keyboard} pressed 
+at the same time as the right mouse button,
+the data point is immediately deleted without further questioning.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Change attribute label for a point}%
+\label{timestring.changeattribute}
+This allows to change all the labels of a certain point
+of the time string by clicking with the right mouse button
+on the data point in the Graph of Table view.
+This opens up the 
+\helpfigref{Change attribute label for a point}{timestring.changeattribute.dialog}
+dialog, in which the labels for the selected point can be changed.
+\begin{figure}[h]
+$$\image{0cm;0cm}{TChangeQ.eps}$$%
+\caption{The ``change attribute label for a point'' dialog}%
+\label{timestring.changeattribute.dialog}
+\end{figure}
+
+\note{After renaming a point, it is not necessarily any
+longer in the currently selected time string, 
+as the newly given label may not be selected.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Time string graph}%
+\label{timestring.graph}
+When the \button{Display graph} in the 
+\helpref{time string folder}{timestring.folder}
+is pressed, a
+\helpfigref{window}{timestring.graph.window}
+is shown. This displays the selected time string as
+colored dots together with a curve representing the current fit.
+\begin{figure}[h]
+$$\image{0cm;0cm}{TGraph.eps}$$%
+\caption{The ``time string graph'' window}%
+\label{timestring.graph.window}
+\end{figure}
+
+There are 4 options in the \menu{Data}, which allow
+to select the kind of data to investigate:
+\myitemize{
+\item Original: displays the original data together with the current fit
+\item Adjusted: displays the adjusted data together with the current fit
+\item Residuals(obs): displays the residuals to the observed values.
+\item Residuals(adj): displays the residuals to the adjusted values.
+}
+
+\note{The current fit is {\it only} plotted, 
+when the resolution of the screen is high enough to display the fit
+without any sampling problems.}
+
+A printout of this graph is possible by selecting the \menuentry{Print}
+in the \menu{File} of that window.
+
+Similar to the 
+\helpref{Time string table window}{timestring.table}, points can be renamed
+or deleted. 
+
+\note{Beware: The cursor has to be close to the point itself
+and no other point may be close. If these conditions are not
+fulfilled, then no point is deleted.
+A beep signifies that a point has been deleted.}
+
+The colors are defined by the color of the labels of the attribute that is
+selected in the \menu{Color}.
+
+The graph also allows zooming into the data.
+Selecting an area with the left mouse button zooms into that
+area. 
+Changing the displayed area can be achieved by the
+\menuentry{Select view port} in the \menu{Zoom}. See
+\helpref{Change view port}{timestring.graph.viewport} 
+for exact explanations.
+Finally the original view can be restored by selecting
+\menuentry{Display all} in the \menu{Zoom}.
+
+The status bar writes the current position of the mouse, while it is over the
+display.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Change view port}%
+\label{timestring.graph.viewport}
+To invoke the 
+\helpfigref{Change view port dialog}{timestring.graph.viewport.dialog},
+the \menuentry{Select view port} in the \menu{Zoom} has to be selected 
+in the
+\helpref{Time string graph}{timestring.graph}.
+There the current values of the view port are listed and can be changed.
+\begin{figure}[h]
+$$\image{0cm;0cm}{GGraphViewport.eps}$$%
+\caption{The ``change view port'' dialog}%
+\label{timestring.graph.viewport.dialog}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Delete default label}%
+\label{timestring.default}
+To change the default values of attribute and label 
+for deleted points, the \menuentry{Delete default label} in
+the \menu{time string} of the main window has to be selected.
+
+This opens up the 
+\helpfigref{delete default label dialog}{timestring.default.dialog}.
+\begin{figure}[h]
+$$\image{0cm;0cm}{TDefault.eps}$$%
+\caption{The ``delete default label'' dialog}%
+\label{timestring.default.dialog}
+\end{figure}
+
+This is only relevant in the time string 
+\helpref{table}{timestring.table} and 
+\helpref{graph}{timestring.graph}.
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "period98"
+%%% End: 

@@ -1,0 +1,113 @@
+\section{Basics}%
+\label{basic.detailed}
+
+\subsection{The main window}
+
+\begin{figure}[h]
+$$\image{0cm;0cm}{GMainTop.eps}$$%
+\caption{The top part of the main window of \period}%
+\label{mainframe.top}
+\end{figure}
+When starting \period is the main window will be shown.
+In the \helpfigref{top}{mainframe.top} there is a menu bar and 
+below 4 folders labeled as:
+\myitemize{
+\item \helpref{Time string}{timestring.detailed}, 
+\item \helpref{Fit}{period.detailed}, 
+\item \helpref{Fourier}{fourier.detailed} and
+\item \helpref{Log}{log.detailed}.
+}
+Each of these can be clicked to enter the relevant folder.
+
+\begin{figure}[h]
+$$\image{0cm;0cm}{GMainBottom.eps}$$%
+\caption{The lower part of the main window of \period}%
+\label{mainframe.bottom}
+\end{figure}
+
+In the 
+\helpfigref{bottom}{mainframe.bottom} there are 4 buttons 
+(which may not necessarily be present in every folder)
+and which trigger different actions, depending on the 
+currently active folder:
+\myitemize{
+\item {\bf Display data}: opens a window with a table of data. 
+\item {\bf Import}: allows to import data from other sources.
+\item {\bf Export}: allows to export data as a single file.
+\item {\bf Display graph}: opens a window with a graph of data .
+}
+
+Below there is the status bar, which will give you additional 
+information about the current menu entry.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Project}%
+\label{project.management}
+
+The main control for the project lies in the
+\menu{File}. (See \helpfigref{File menu}{basic.file.menu}
+\begin{figure}[h]
+$$\image{0cm;0cm}{MFile.eps}$$%
+\caption{The ``file'' menu}%
+\label{basic.file.menu}
+\end{figure}
+
+There are 4 menu entries.
+The \menuentry{New Project} erases the current project from memory after 
+a user confirmation and sets all values to their defaults.
+
+The \menuentry{Load Project} will load a project file, while the
+\menuentry{Save Project} will save the project file with the same name, as
+it had been loaded. If the project was started anew, the user 
+will be prompted for a new filename.
+Finally the \menuentry{Save Project as} allows to save the 
+project with a different name.
+
+The \menuentry{Quit} will exit \period.
+If the Project has not been saved first,
+the user will be asked for confirmation.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Help menu}%
+\label{basic.help}
+
+The \menu{Help} gives the user additional information on
+\period.
+
+\begin{figure}[h]
+$$\image{0cm;0cm}{MHelp.eps}$$%
+\caption{The ``help'' menu}%
+\label{basic.help.menu}
+\end{figure}
+
+There are a some menu entries:
+\myitemize{
+\item {\bf About} will inform about the version of \period.
+\item {\bf Copyright} will start the help system and display
+        the copyright message for the \period manual.
+\item{\bf Introduction} will start the help system and display
+        the Introduction section of the \period manual.
+\item{\bf Contents} will start the help system and display
+        the contents section of the \period manual.
+\item {\bf Keyword search} will start the help system and 
+        allow to search for a certain keyword in the \period manual.
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{In case of a program error}%
+\label{basic.error}
+
+In case of a program error \period will try to recover from the
+worst, inform the user that an fatal error has occurred and ask for a
+filename to store the current project.
+
+\note{A new filename is preferred, as the internal data structure may 
+already have been destroyed and thus the output may 
+be garbled.}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "period98"
+%%% End: 

@@ -1,0 +1,116 @@
+\section{Microsoft Windows95 and Windows NT}%
+\label{Install_Windows95NT}
+
+To install \period on Windows95 or Windows NT you have to
+get the file
+\urlref{\periodnt}{\periodntftp}
+and start it.
+This will lead you through the setup procedure 
+and finally installs \period on the start menu.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Unix - Install precompiled}%
+\label{Install_Unix_precompiled}
+
+The following UNIX executables are currently (or will shortly be) available:
+\myitemize{\periodbinaries}
+
+To review the latest list of compilation of 
+\period executable packages please have a look at 
+the \urlref{\periodname homepage}{\periodhome}.
+
+To install, simply type the command:
+{\tt sh \periodfull-<OSTYPE>}
+as this is a shell script.
+You will be asked a few questions about where to install the relevant files.
+First where all the files needed for \period should be installed, and then
+where the binary itself should be installed.
+
+When the program has finished, \period is ready to use and can be 
+started with the command: {\tt \periodname}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Unix - Install from source code}%
+\label{Install_Unix_source}
+
+To install \period from source code you must have the 
+following programs installed on your computer:
+\myitemize{
+\item C++ compiler (preferably GNU-gcc 2.7.2 or later, others may not work)
+\item gzip
+\item possibly GNU-make
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{What files are needed}%
+\label{Get_SRCS}
+
+Please get all of the following files:
+\myitemize{
+\item wxxt-GUI-library:
+ \urlref{\wxxtlib\\}{\wxxtliburl}
+\item wxxt-GUI-library utils:
+ \urlref{\wxxtutils\\}{\wxxtutilsurl}
+\item \periodname sources:
+ \urlref{\periodsrc\\}{\periodsrcurl}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Compiling \periodname}%
+\label{Compiling_Period}
+
+\myitemize{
+\item Extract files for compilation
+        \myitemize{
+        \item extract the file {\bf \wxxtlib} with the command:\\
+                {\tt zcat \wxxtlib | tar xf - }
+        \item enter the directory {\bf \wxxtbase} with:\\
+                {\tt cd \wxxtbase}
+        \item extract the file \wxxtutils\space with the command:\\
+                {\tt zcat ../\wxxtutils | tar xf - }
+        \item enter the directory {\bf user} with:\\
+                {\tt cd user}
+        \item extract the file {\bf \periodsrc} with the command:\\
+                {\tt zcat ../../\periodsrc | tar xf - }
+        \item enter the directory {\bf \periodname} with:\\
+                {\tt cd \periodname}
+        \item go back to the {\bf main} directory with:\\
+                {\tt cd ../..}
+        }
+\item Configure your system with the command:\\
+        {\tt ./configure}\\
+        If this does complain about something, then please
+        try to fix the situation according to the messages
+        that you receive.\\
+        The most probable events may be that the version
+        of {\bf make} installed on your machine does not support
+        some features needed to compile or that your shell does not define 
+        the system variable OSTYPE. 
+\item Compile the relevant components with the command:\\
+        {\tt make all SRC="src utils/wxTab utils/wxHelp user/\periodnamens"}\\
+        in the case of compile or link problems that mention something
+        about xpm please retry to configure your system with the
+        additional switch:
+        {\tt $--$without-xpm}, then type {\tt make clean} 
+        and then start compiling anew.
+\item Create an installable executable package of \period with the command:\\
+        {\tt {./\periodnamens}Package}\\
+        This will create a file called \periodfull-$<$OSTYPE$>$.
+        This is a final distributable file for your system.
+\item Install the package as explained to you in:
+        \helpref{Installing precompiled binaries}{Install_Unix_precompiled}. 
+}
+
+After some tests with the newly compiled \period we would welcome if you
+could send us a copy of your compiled \period.
+To do so please upload to the 
+\urlref{\periodname incoming directory}{\periodftpincoming} 
+and send a mail to \periodmail, 
+so that we may include it, along with other binary distributions 
+for the convenience of other potential users.
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "period98"
+%%% End: 

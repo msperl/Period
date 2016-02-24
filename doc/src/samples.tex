@@ -1,0 +1,250 @@
+\note{the numbers here are all taken as random as of now and need to be corrected.
+The whole chapter should be reread with great care once the actual sample datasets
+have appeared...}
+
+This following example presents some of the more sophisticated possibilities 
+that \period offers in a step by step manner.
+Also some basic concepts of signal-processing and their 
+application in \period will be discussed briefly.
+
+This sample assumes that the basic principles of how to
+use \period are well understood and that the user can
+reproduce the example in
+\helpref{Using \periodname}{HELP_HOWTOUSE}.
+
+The problem presented here is an application
+of \period on an extended astronomical dataset.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Footprint of an astronomical time-series photometric data set}
+
+In optical astronomical observations a continuous data set 
+that is larger than 12 hours is very rare case.
+The usual length of a ``run'' is most likely less than 12 hours,
+depending on the star itself, the observatory and
+season.
+
+But this is not all that can happen during observations.
+The technique used to observe a star also introduce
+a pattern in time of how often a star will be observed.
+
+Different techniques are used for different kinds of
+stars and on the scientific goal for the current observations.
+\myitemize{
+\item {\bf high speed:} is used to observe stars which show
+  frequencies that have periods of less than one hour, as
+  long term stability of the instrumentation used may not be 
+  assumed apriori. Thus sophisticated calibrations
+  have to be used to extend to longer periods.
+  The data for these kind of observations is mostly equidistant
+  and usually at least one measurement is taken every 10 seconds.
+  Still some gaps are introduced into the data that are mostly due 
+  to clouds, instrumental problems or recalibration efforts.
+  
+  The usual instrumentation used in this setup is
+  a {\it high-speed multichannel photometer}.
+
+\item {\bf multiple star technique:} this technique does not allow
+  for high frequency analysis with periods of less than 20 minutes,
+  as the average gap in time between measurements is usually 7 to 10 
+  minutes (depending on the observing program). This gap is introduced
+  by the fact that multiple stars are observed once after the other with
+  a {\it photometer}.
+  Usually at least 3 stars and the sky background are measured one after the other.
+  One of these 3 stars is the star of interest. The others are used as 
+  calibration stars and should {\it not} show variability.
+  As each star has first to be centered in the photometer aperture and then
+  the integration can be started a measurement, the total time to
+  measure {\it one} star is at least 90 seconds. Usually the stars
+  are also observed in different {\bf filters}.
+  
+\item {\bf CCD photometer:} using a {\it CCD-camera} as acquisition device
+  allows for a new hybrid-method of the both above mentioned, as the camera
+  allows to measure all of the stars used in the multiple star technique at
+  the same time, thus removing the need to reposition the telescope as well.
+  The time in between measurements is currently (1997) close to one minute 
+  and is improving dramatically with each year. On the other hand long term
+  stability of the system is also given.
+
+\item {\bf single measurements} for variable stars with long periods 
+  (month to years) are also possible.
+}
+
+Usually time is granted for some telescopes for a few days at least to study
+variable stars, so a ``run'' contains daily junks of measurements, which
+are combined to a total time string.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Analysis of a run}
+For this example data from a 3 star technique observation has been used.
+The length of the observation is \toedit days.
+The time string {\tt observ.dat} in the {\it samples directory}
+should be loaded and then can be examined
+in detail using the \helpref{time string graph}{timestring.graph} option of \period.
+
+The time string can now be separated in different sub strings representing different nights.
+For this the \helpref{subdivide selection}{timestring.subdivide} option of \period can be used.
+The settings should work for the data. Now even the different nights are colored differently
+in the \helpref{time string graph window}{timestring.graph}.
+
+\subsection{Fourier analysis}
+\subsection{Spectral window}
+\subsection{Significance of a frequency}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Multi site campaign}
+To decrease the large gaps in time the only possibility is to use
+telescopes located all over the world. This means that all of the
+telescopes are interconnected.
+\myitemize{
+\item \urlref{Delta Scuti Network (DSN)}{\DSNHOME},
+\item \urlref{Whole Earth Telescope (WET)}{\WETHOME},
+\item \urlref{Small Telescope Array with CCD Cameras(STACC)}{\STACCHOME}
+}
+are a few of the currently better known networks.
+
+These telescopes located over all continents do not only
+improve time resolution due to the telescopes situated in
+different time zones, but also improves chances for good weather at
+at least one site of the globe every day...
+
+As the observations of the dataset loaded were made in \toedit an appropriate
+label for that site shall be given by selecting {\it all} data points and
+then using the \helpref{Combine substrings}{timestring.rename} to give the
+selected time string an new common label of 
+``\toedit'' in the attribute {\it observatory}.
+
+Now a time string for observations made at additional observatories has 
+to be appended. With the \menuentry{Import time string} in the 
+\menu{time string} additional time strings can be loaded.
+The time string {\tt sites-u.dat} in the {\it samples directory} is needed now.
+This file also contains the appropriate labels for the different 
+observatories, where the data has been taken. No changes in the 
+\helpref{import format dialog}{timestring.import.dialog} have to be made.
+
+Examining the whole data with \helpref{time string graph}{timestring.graph} option of \period.
+
+The time string can now be separated in different substrings representing different nights.
+For this the \helpref{subdivide selection}{timestring.subdivide} option of \period can be used.
+The settings should work for the data. Now even the different nights are colored differently
+in the \helpref{time string graph window}{timestring.graph}.
+
+\subsection{Fourier analysis}
+
+\subsection{Spectral window}
+
+\subsection{Period analysis}
+
+\subsection{Phase plot - noise level for different subsets}
+
+\subsection{Using weighted data}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Combining campaigns from different years}
+
+\subsection{Fourier analysis}
+
+\subsection{Spectral window}
+
+\subsection{Period analysis}
+
+\subsection{Phase plot}
+
+\subsection{Amplitude variations}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Other possible applications}
+There are a lot of other applications for which \period can be very useful.
+Some of then will be presented here.
+
+\subsection{A fit to different filters simultaneously}
+As has already been shown \period can create a best fit of amplitudes
+for different subsets of a time string. But that is not all, as it allows 
+to calculate {\bf amplitude and phase} variations at the same time.
+This can be used to find a best fit to two substrings that 
+represent different physical parameters of a certain object, 
+but which share the same frequency.
+
+One such example is the observation of a star in many different filters.
+There are two possibilities to do so:
+\myitemize{
+\item {\bf ``Normal calculation'' of a fit:} For this a best fit for 
+  {\bf all} parameters has to be calculated with one of the subsets.
+  Then the other subset has to be selected and just Amplitudes and phases
+  may be calculated anew (with the use of the \button{Calculate} in the ``Fit'' filer). 
+  Then the amplitudes and phases for the different subsets may be 
+  examined and variations can be found.
+  
+  \note{The drawback in this case is that the frequency does not get improved, 
+  and that so the frequency may produce a best fit for one frequency, 
+  but not a good one for the other. Cross checks with the other subsets used
+  to fit the frequencies as well should also be made and care has to be taken.}
+
+  In special cases the \button{Improve Special} in the ``Fit'' filer 
+  may also be used if the phases should be kept fixed. 
+
+\item {\bf Amplitude and phase variation:} With this option \period tries to improve
+  a set of amplitudes and phases for each subset (filter) separately, but improving
+  the frequency as a common variable.
+
+  \note{The drawback with this method is that the calculation increases for the 
+  most general case, 
+  where for all frequencies amplitude and phase-variations are calculated, 
+  the number of points will increase by a factor of 2 in the most optimistic case, 
+  but the degrees of freedom will increase by a factor of 5/3 for two subsets.
+  So, in the case that the number of points of the second subset are 
+  less then 2/3 of the number of points then the first one, this does not
+  mean numerical improvement of the fit. 
+  The fit becomes more instable numerically than it has been before!
+  In this case the first method should be used with the subset with the
+  most points.
+
+  This rational changes, when weighted data is used.
+  In that case it is not easy to say, where the borderline would be...
+  }
+}
+
+\subsection{Asymmetric light-curves}
+The light curve of many stars show asymmetries from a sinusoidal
+curve, some even bumps in the light curve, so \period can also
+cope with this.
+
+Fourier theory offers the general idea to use the harmonics 
+of a frequency (base frequency times an integer as new frequency)
+with a different amplitude and phase, to fit an arbitrary curve.
+
+In the case of an asymmetric light curve, which can be best observed
+with the \helpref{phase plot tool}{period.phase} tool of \period,
+the Fourier spectrum will show at the frequency, twice the frequency,
+etc. a peak, some of which may be very small, others may prove to be
+significant.
+
+A detailed description of how to enter harmonics as frequencies can
+be found in the \helpref{Fit folder}{period.folder}.
+
+\subsection{Frequency combination}
+Linear theory also cannot explain frequency combinations.
+That means that a frequency, that is a sum of two other frequencies,
+is found to be significant in a light curve of a star.
+No bulletproof physical reason has emerged yet, but 
+{\it mode coupling} one possible explanation.
+
+A detailed description of how to enter frequency combinations as frequencies can
+be found in the \helpref{Fit folder}{period.folder}.
+
+\note{Frequency combinations should {\bf only} be used when a frequency looks suspiciously
+  like a sum of two others. That means that the difference between the independently
+  computed value and the sum of the other two is {\it negligible}.
+  In this case the use of frequency combination improves the stability of the 
+  numerical fit, as the degrees of freedom decrease.} 
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "period98"
+%%% End: 

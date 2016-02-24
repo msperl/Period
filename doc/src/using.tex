@@ -1,0 +1,321 @@
+As from the early design stages, the philosophy for \period had been
+usability and scientific reproducibility. Therefore its central feature is 
+its {\bf project file}. This offers the possibility to stop at a certain point 
+and continue later - maybe even on a totally 
+different operating system - as if the program had not been stopped.
+
+Along with this comes the {\bf log feature}, where every action that has been 
+taken is written down with the current date and time. This log 
+also offers the possibility to include comments, thoughts, etc.
+with the machine generated ones.
+The design goal for the {\bf log} had been that it can
+be read easily by the human user.
+Beware, as the program generated documenting messages 
+are quite extensive even a simple session can produce large output - 
+this can be a real nuisance but can also help in some cases!
+
+All the other parts of \period are attached as modules to this backbone.
+
+The most essential module is the one for handling the {\bf time string data}.
+It offers the possibility to select different parts of the time string.
+Thus each and every data point can have up to 4 different 
+{\bf attributes} that can  be attached to it. 
+With these attributes, which are named by default:
+{\it Date}, {\it Observatory}, {\it Observer} and {\it Other},
+each data point can have a label of its own. With this it is easy 
+for example to differentiate between days, 
+observers or observatories - even techniques
+or different instrumentation.
+
+An example for a data point is:
+
+\begin{tabular}{|c|c|}\hline
+\row{{\bf time}&{116.7018519}}
+\row{{\bf amplitude}&{11.231}}
+\row{{\bf date}&{1996-02-03}}
+\row{{\bf observatory}&{SAAO}}
+\ruledrow{{\bf observer}&{Smith}}
+\end{tabular}
+
+and the format of the data would be:\\
+{\tt 116.7018519     11.231  1996-02-03      Keck    Smith}
+
+Thus selecting a certain subset of the time string can be done 
+by selecting the appropriate labels in each of these attributes. 
+
+\note{A point is only added to the current selection if 
+{\bf all} its attributes are selected.}
+
+These qualities also offer common additional attributes except for 
+their name, namely:
+\myitemize{
+\item {\bf color}: this helps to differentiate between different 
+        attributes in a graph.
+\item {\bf weight}: this gives, as a product of the weight of all
+        qualities for a certain point, a weight to the point. 
+        This value then can be used by all the other modules
+        when performing calculations.
+}
+
+Finally there is the concept of {\bf uncorruptable data},
+which means, that the original data should not be shifted, scaled,
+etc. in any way. So there are two distinct sets of amplitudes for each 
+data point:
+\myitemize{
+\item {\bf original}: the unedited data
+\item {\bf adjusted}: the edited data, which can easily be reverted
+        to the original values.
+}
+
+\note{Again, as \period never wants to change original data, the deletion of 
+data is not an act of deleting but an act of changing a certain
+attribute to ``deleted'' for example. (This label can be changed.)}
+
+The next module is only responsible for {\bf sinusoidal fits} to the
+currently selected time string. 
+It basically consists of a table of frequencies,
+amplitudes and phases along with a zero point.
+
+The fit to the data is as follows:\\
+\latexonly{$A(t)=Z+\sum A_{i} sin(2\pi(t F_{i}+P_{i})) $}
+\latexignore{$A(t)=Z+SUM(A{i} sin(2 \pi(t F{i}+P{i})))$\\}
+
+Frequencies can be active or inactive for a certain fit,
+giving more degrees of freedom to the user. The user may check different
+solutions to the same time string, or look for effects of certain frequencies
+on a Fourier spectrum.
+
+Additional features are that a frequency can either be a {\bf harmonic} 
+of another frequency (which helps fitting data with nonsinusoidal
+shapes) or a {\bf combination} of two other frequencies 
+(sum or difference of integer multiples of each frequency).
+
+Fits to the data are allowed with almost arbitrary freedom,
+but basically there are 3 modes of calculation:
+\myitemize{
+\item {\bf Calculate}: keeps the frequencies fixed and
+        finds the best fit for all selected amplitudes and phases.
+\item {\bf Improve}: improves the frequencies as well.
+\item {\bf Special}: gives full choice of what frequencies,
+        amplitudes and phases should be improved, as well as
+        a possibility to calculate 
+        {\bf amplitude and/or phase variations }
+        according to a certain attribute of the time string.
+}
+
+The last of the modules of \period gives access to {\bf Fourier} techniques.
+In this case there is nothing much out of the ordinary, but it has 
+some interconnections with the {\bf fit} module. 
+
+\note{it performs full featured Fourier transformation and does not use
+the faster ``Fast Fourier Transform ''(FFT) algorithm, as data
+do not have to be equally spaced.}
+
+For bookkeeping, the result of the Fourier calculations are stored
+together with the project as long as these are not removed by the user.
+Each calculation also has a label of its own for ease of recognition.
+
+One special feature is the possibility to calculate
+a Fourier spectrum with {\it weighted} data, 
+or the possibility to calculate 
+{\bf Fourier noise}. This means calculating an average amplitude for 
+a certain frequency range. It can be very useful to determine if 
+an peak is significant or not.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Starting up \periodname}
+\label{basic.start}
+
+Starting \period is as easy as: 
+\myitemize{
+\item typing {\tt \periodname} under Unix(tm)
+\item Starting \period from the start menu under
+         Windows 95\registered , or
+         Windows NT\registered
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{A small example}
+\label{basic.example}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Reading in a time string}
+First we have to load a time string.
+To do so, please go to the 
+\helpref{time string folder}{timestring.folder} and press
+the \button{Import} in the bottom of the window.
+Then you will be asked for the name of the file you want to import.
+Please select the file {\tt test.dat} in the samples directory of
+the \period installation directory 
+(the exact location depends on your installation, but it should be
+installed in the directory ``samples'' of the installation directory 
+of \period).
+
+Then you will see that the \helpref{import dialog window}{timestring.import} 
+will show up. For the moment please just click on the \button{Ok},
+as the defaults are acceptable.
+For further information please check out the reference above.
+
+As you can see, the window has changed and some further information
+is given, e.g. the number of points selected and the total number of
+points.
+
+To have a look at the data please press on the \button{Display Graph}.
+This will open up a window with the representation of the timestring.
+(See \helpref{timestring graph window}{timestring.graph} for more details.)
+
+You already can see some periodicity in the graph itself, so 
+let us try to find out what frequencies are in the data.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Fourier analysis}
+First we have to make a Fourier analysis.
+Activate the \helpref{fourier folder}{fourier.folder} by clicking
+with the Mouse on {\bf Fourier} - but do {\it not} select the menu.
+
+The new dialog offers a lot of possibilities, but as the defaults
+for \period are well chosen in this case just pressing on the
+\button{Calculate} will start the calculation.
+
+But before starting the calculation \period will ask if it should
+subtract an average zero point of -0.007892. 
+(For more detailed discussion please see 
+\helpref{Fourier zero point}{fourier.zeropoint}.)
+Please choose yes as well and then the calculations will start.
+
+When the calculation has finished, a small window will show up and ask, 
+if you want to include the frequency with the highest peak. 
+(The result should be: 
+Frequency of 11.9162641 
+and an amplitude of 0.10172852).
+Please choose again yes and this frequency will be included 
+in a list of frequencies.
+
+The Fourier spectrum can also be examined graphically by pressing on the
+\button{Display graph}.
+The new \helpref{window opening up}{fourier.graph} will display the result.
+
+\note{As you may notice the graph is not smooth.
+This is due to the fact that during Fourier calculation 
+\period tries to minimize
+memory usage by memorising only local extrema and skipping all the
+points in between.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Fit one frequency}
+So, as we have got a frequency, we can try to fit it to the signal.
+Activate the \helpref{fit folder}{period.folder} by clicking
+with the Mouse on {\bf Fit} - but not on the menu.
+
+As we have already included one frequency, 
+we can see its parameters in the table as F1.
+As the frequency F1 has not been activated,
+please tick the checkbox in front of {\bf F1} to activate it.
+
+Now, at first we have to find out about the true phase
+using the least square fit technique.
+Just press on the \button{Calculate} and almost immediately
+the window will be updated with the new values.
+
+\begin{tabular}{|c|c|c|}\hline
+\row{{\bf frequency}&{\bf amplitude}&{\bf phase}}\hline
+\row{{11.9162641}&{0.100150376}&{0.0200245}}
+\hline\hline
+\row{{\bf zero point}&{0.00101803983}&}
+\ruledrow{{\bf residuals}&{0.0342341403}&}
+\end{tabular}
+
+But the frequency itself has not been improved. 
+And this is what we actually want to do.
+So press now on the \button{Improve all}.
+This will also improve the frequency and should give the
+following result:
+
+\begin{tabular}{|c|c|c|}\hline
+\row{{\bf frequency}&{\bf amplitude}&{\bf phase}}\hline
+\row{{11.9870449}&{0.101277217}&{0.00447894}}
+\hline\hline
+\row{{\bf zero point}&{0.00224986037}&{}}
+\ruledrow{{\bf residuals}&{0.0336615961}&{}}
+\end{tabular}
+
+This is the best fit that we can reach with a single frequency.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Fourier analysis with residuals}
+Now go back to the {\bf Fourier folder} and
+select the ``Residuals at original'' entry in the 
+``Calculation based on'' item.
+Then calculate Fourier anew by pressing the \button{Calculate}.
+
+This time you should not be prompted for a zero point, as \period
+assumes that the residuals have a mean value of zero. 
+The fit should already have taken care of it.
+
+Again please include the frequency of the highest point, which in this case
+should be: Frequency= 7.16586151 and amplitude: 0.0457409859.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Fit two frequencies}
+
+Now we have found two frequencies, so let's go back to the 
+{\bf Fit folder} and activate the frequency F2 as well.
+Then press again the \button{Calculate}.
+
+After the calculations have finished,
+the window will be updated with the new values:
+
+\begin{tabular}{|c|c|c|}\hline
+\row{{\bf frequency}&{\bf amplitude}&{\bf phase}}\hline
+\row{{11.9870449}&{0.0975994208}&{0.00428761}}
+\row{{7.16586151}&{0.0479167213}&{0.25244}}
+\hline\hline
+\row{{\bf zero point}&{-0.00198521031}&{}}
+\ruledrow{{\bf residuals}&{0.00645800843}&{}}
+\end{tabular}
+
+Finally improve the frequencies as well
+by pressing on the \button{Improve all},
+and the window will be updated with
+the new values:
+
+\begin{tabular}{|c|c|c|}\hline
+\row{{\bf frequency}&{\bf amplitude}&{\bf phase}}\hline
+\row{{11.9994309}&{0.100072311}&{0.000117863}}
+\row{{6.99670604}&{0.0501719796}&{0.301063}}
+\hline\hline
+\row{{\bf zero point}&{1.50619639e-05}&{}}
+\ruledrow{{\bf residuals}&{0.000281511948}&{}}
+\end{tabular}
+
+This is very close to the values chosen for creating
+the artificial light curve, which are:
+
+\begin{tabular}{|c|c|c|}\hline
+\row{{\bf frequency}&{\bf amplitude}&{\bf phase}}\hline
+\row{{12}&{0.1}&{0.0}}
+\row{{7}&{0.05}&{0.3}}
+\hline\hline
+\ruledrow{{\bf zero point}&{0.0}&{}}
+\ruledrow{{\bf residuals}&{0.000329267906}&{artificial noise}}
+\end{tabular}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Save the Project}
+
+Finally we may want to save the full results.
+To do so, please select the \menuentry{Save Project} from the 
+\menu{File}, and save the project.
+
+\period can be quit by selecting the \menuentry{Quit} from the 
+\menu{File}.
+
+To continue with all the settings that you have had in your last session
+restart \period and then select the \menuentry{Load Project} 
+from the \menu{File}. Now you can continue as if the work has
+not been interrupted.
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "period98"
+%%% End: 

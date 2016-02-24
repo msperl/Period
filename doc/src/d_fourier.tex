@@ -1,0 +1,275 @@
+\section{Fourier}%
+\label{fourier.detailed}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Fourier folder}%
+\label{fourier.folder}
+
+\begin{figure}[h]
+$$\image{0cm;0cm}{FFolder.eps}$$
+\caption{The ``Fourier'' folder}
+\end{figure}
+
+This folder shows all the necessary information that has to do with 
+Fourier transformation.
+
+The basic idea behind this folder is that different Fourier calculations 
+can be kept in memory simultaneously and that the setting for each of these 
+{\it Fourier sets} can be restored with a click of the mouse.
+
+Because of this possibility there is a need for a {\bf Title} for 
+identification by the user.
+Then there are {\bf From} and {\bf To}, which define the frequency range,
+for which the Fourier spectrum should be calculated.
+As with the \helpref{fit module}{period.folder} there is the possibility
+to use weighted data for the Fourier calculations.
+
+ In the next line the Nyquist frequency
+is displayed. This value should be a good
+estimate for the upper limiting frequency due to the sampling pattern in
+the currently selected time string.
+This frequency value given does {\it not} depend only on the time base 
+and the number of points in the currently selected time string, 
+but uses a more sophisticated algorithm, estimating the average 
+time gap between neighboring points, ignoring large gaps.
+
+With the choice item {\bf Step rate} it is possible to change the accuracy 
+of the Fourier calculation. This means, that the step at which the frequency 
+range is sampled can be changed. {\bf High, medium and low} are good 
+estimates (High uses most time to calculate).
+With {\bf Custom} a user defined value can be chosen 
+in the text item next to it.
+For all the other 3 possibilities the text item can not be edited and
+will contain the value that would be used in this case.
+
+Next the {\bf highest peak} line gives the highest peak that was 
+found during the calculation with the coresponding frequency and amplitude.
+
+With {\bf Calculations based on} it is possible to select different data types
+for the calculation. These correspond to the values that can be displayed in
+the \helpref{Time string graph}{timestring.graph} and
+\helpref{Time string table}{timestring.table}%
+. {\bf Spectral window }allows the calculation of the spectral window centered
+at zero frequency for the currently selected time string.
+
+The {\bf Compact} option allows to limit the - often very massive - output 
+of Fourier, because with {\bf Peaks only} only the local minima and maxima
+are kept.
+
+The \button{Calculate} takes all the settings above and 
+calculates a new Fourier spectrum with this. (See
+\helpref{Fourier calculate}{fourier.calculate}
+for more details.
+
+In the list box below the \button{Calculate}, all the previous
+Fourier calculations are listed with their title. Selecting one of these will
+update all the values above to the values used for that specific
+calculation.
+
+With the \button{Delete} the currently selected Fourier calculation
+can be removed from memory - only the log file entries will remain.
+The \button{Rename} allows to change the title for the currently
+selected Fourier calculation. To do so, the
+\helpfigref{rename title dialog}{fourier.rename.dialog} is opened.
+\begin{figure}[h]
+$$\image{0cm;0cm}{FRename.eps}$$%
+\caption{The ``rename title'' dialog}%
+\label{fourier.rename.dialog}
+\end{figure}
+
+The \button{Display data} opens up the 
+\helpref{Fourier data window}{fourier.table}
+and allows examination of the output of the calculation.
+
+Next the \button{Export} allows the output to be written to a file.
+(See \helpref{Fourier export}{fourier.export} for details.)
+
+Finally the \button{Display graph} opens up the
+\helpref{Fourier graph window}{fourier.graph}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Fourier calculate}%
+\label{fourier.calculate}
+When starting a Fourier calculation with the \button{Calculate} in
+the \helpref{Fourier folder}{fourier.folder}%
+, the main window will change
+to represent the 
+\helpfigref{current status of calculation}{fourier.calculate.dialog}%
+. In this case it will give the percentage of the calculations completed.
+Again the \button{Cancel} can stop the calculations.
+\begin{figure}[h]
+$$\image{0cm;0cm}{FCalculate.eps}$$%
+\caption{The ``Fourier calculate'' window}%
+\label{fourier.calculate.dialog}
+\end{figure}
+
+In the case of {\bf observed} or {\bf adjusted} values selected 
+for calculations, the user will first be
+asked if the average zero point should be subtracted with the
+\helpref{zero point dialog}{fourier.zeropoint}%
+.
+
+After the calculation has finished, the
+\helpfigref{include dialog}{fourier.include.dialog}
+will show up and ask, if the currently found highest peak
+should be included in the list of frequencies of the
+\helpref{Fit module}{period.folder}%
+.
+
+\begin{figure}[h]
+$$\image{0cm;0cm}{FInclude.eps}$$%
+\caption{The ``include'' dialog}%
+\label{fourier.include.dialog}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Zero point}%
+\label{fourier.zeropoint}
+The Fourier transform has the property, that if the mean amplitude
+of the currently selected time string for calculation is {\it not Zero}
+additional features in the low frequency range will show up.
+This is due to this Zero point shift and the features showing up are 
+comparable to a scaled spectral window centered at frequency 0.
+This feature may even dominate the whole spectrum.
+
+To overcome this problem \period will ask with the
+\helpfigref{zero point dialog}{fourier.zeropoint.dialog}, if
+it should subtract a (calculated) zero point, when the calculations
+are based on {\bf Original} or {\bf Adjusted} data.
+\begin{figure}[h]
+$$\image{0cm;0cm}{FZeropoint.eps}$$%
+\caption{The ``zero point'' dialog}%
+\label{fourier.zeropoint.dialog}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Fourier export}%
+\label{fourier.export}
+
+\subsection{Fourier table}%
+\label{fourier.table}
+This \helpfigref{window}{fourier.table.window},
+which shows up, when the \button{Display data} in the
+\helpref{Fourier folder}{fourier.folder} has been pressed,
+shows a table of {\bf frequencies, Fourier amplitudes and Fourier power},
+of the currently active Fourier calculation.
+\begin{figure}[h]
+$$\image{0cm;0cm}{FTable.eps}$$%
+\caption{The ``Fourier table'' window}%
+\label{fourier.table.window}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Fourier graph}%
+\label{fourier.graph}
+The \helpfigref{Fourier graph window}{fourier.graph.window} will show up,
+when the \button{Display Graph} in the
+\helpref{Fourier folder}{fourier.folder} has been pressed.
+It will show the graph of the currently active Fourier calculation.
+\begin{figure}[h]
+$$\image{0cm;0cm}{FGraph.eps}$$%
+\caption{The ``Fourier graph'' window}%
+\label{fourier.graph.window}
+\end{figure}
+
+Actually many of the menus are the same as for the
+\helpref{time string graph}{timestring.graph}.
+
+The only new feature is the \menu{display}, in which it is
+possible to change the graph to display {\it power} instead of {\it amplitude}
+with the \menuentry{Use power}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Noise}%
+\label{fourier.noise}
+Sadly observations are not perfect and usually contaminated with noise.
+This noise may come from many sources: Observations, instrumentation,
+the object itself, modes (frequencies) not yet found in the spectra, etc\ldots
+
+As this noise is thus only pseudo-random there is no way to eliminate 
+it during data reduction.
+Thus all the noise produces some unpredictable pattern in the Fourier spectrum.
+So it is possible, that some peaks in the Fourier spectrum are found that
+are not present in the object observed.
+
+But how can noise be separated from a real signal?
+There is never a guarantee for a sure identification, 
+but observational
+(\urlref{Breger et al., 1993}{A\&A 271,482})
+and numerical simulations
+(\urlref{Kuschnig et al.,1997}{A\&A 328,544})
+have shown, that the {\it ratio} between {\it signal} and {\it noise} in 
+amplitude should at least be 4.0 to give good confidence.
+
+So {\bf signal} is defined as either 
+the amplitude in the {\bf Fourier spectrum}
+or the amplitude of the {\bf least square fit solution}
+for a certain peak, and {\bf noise} is defined as the average amplitude
+in a close frequency range to the peak unde consideration
+after subtracting the frequency with the 
+\helpref{fit module}{period.folder}
+and using the resulting residuals for the calculation of noise.
+The \helpref{Fourier module}{fourier.folder} offers two options 
+to calculate noise.
+These are:
+\helpref{Noise at frequency}{fourier.noisefrequency}
+and
+\helpref{Noise spectrum}{fourier.noisespectrum},
+which both can be reached from the \menu{Fourier}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Noise at frequency}%
+\label{fourier.noisefrequency}
+When the \menuentry{Noise at frequency} in the \menu{Fourier}
+has been selected, the
+\helpfigref{noise at frequency dialog}{fourier.noisefrequency.dialog}
+will show up.
+\begin{figure}[h]%
+\label{fourier.noisefrequency.dialog}
+$$\image{0cm;0cm}{FNoise.eps}$$%
+\caption{The ``noise at frequency'' dialog}%
+\end{figure}
+
+Most of the contents of this dialog are similar to that of the
+\helpref{Fourier folder}{fourier.folder}.
+
+The only difference is that the frequency at which the noise
+calculations should be centered can be entered as well as
+the extent of the range.
+
+After the \button{OK} has been pressed and the calculation has finished
+a window will pop up and show the result.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Noise spectrum}%
+\label{fourier.noisespectrum}
+The noiselevel is not necessarily constant in the whole frequency spectrum.
+The {\bf Fourier module} also supports the possibility to calculate a
+{\bf noise spectrum}.
+
+This is basically the same procedure as for
+\helpref{noise at frequency}{fourier.noisefrequency}, but the calculation
+is repeated at different parts of the frequency range.
+
+When the \menuentry{Noise spectrum} in the \menu{Fourier}
+has been selected, the
+\helpfigref{noise spectrum dialog}{fourier.noisespectrum.dialog}
+will show up.
+\begin{figure}[h]
+$$\image{0cm;0cm}{FNoiseSpectrum.eps}$$%
+\caption{The ``noise spectrum'' dialog}%
+\label{fourier.noisespectrum.dialog}
+\end{figure}
+
+The dialog is very similar to that of 
+\helpref{noise at frequency}{fourier.noisefrequency}.
+The main difference is that the frequency range {\bf from} and {\bf to}
+has to be entered as well as the spacing between consecutive
+noise values centered at frequencies of interest.
+After the \button{OK} has been pressed and the calculation has finished,
+a window will pop up and show the results.
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "period98"
+%%% End: 

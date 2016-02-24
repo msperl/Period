@@ -1,0 +1,6 @@
+AAA       ICON bitmaps\programm.ico
+programm  ICON bitmaps\programm.ico
+fourplot  ICON bitmaps\fouplot.ico
+timeplot  ICON bitmaps\timeplot.ico
+phaseplot ICON bitmaps\phaseplot.ico
+#include "wx.rc"

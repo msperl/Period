@@ -1,0 +1,169 @@
+\documentstyle[a4,twoside,makeidx,verbatim,texhelp,fancyhea,mysober,mytitle]{book}
+
+% general variables
+\newcommand{\periodnamens}[0]{Period98}
+\newcommand{\version}[0]{1.0.1}
+\newcommand{\wxver}[0]{1.66}
+
+% URL-directions
+\newcommand{\periodftp}[0]{ftp://dsn.astro.univie.ac.at/pub/Period98/current}
+\newcommand{\periodftpincoming}[0]{ftp://dsn.astro.univie.ac.at/incoming}
+\newcommand{\periodhome}[0]{http://dsn.astro.univie.ac.at/period98}
+\newcommand{\periodmail}[0]{period98@dsn.astro.univie.ac.at}
+\newcommand{\periodnt}[0]{P98inst.exe}
+\newcommand{\wxxtftp}[0]{ftp://dsn.ast.univie.ac.at/pub/wxwin}
+
+\newcommand{\DSNHOME}[0]{http://dsn.ast.univie.ac.at/}
+\newcommand{\WETHOME}[0]{http://ceti.as.utexas.edu/wetpage.html}
+\newcommand{\STACCHOME}[0]{http://www.obs.aau.dk/~srf/projects/STACC.html}
+
+% composite variables
+
+\newcommand{\periodname}[0]{\periodnamens\space}
+\newcommand{\period}[0]{{\bf \periodname}}
+\newcommand{\periodfull}[0]{\periodnamens-\version}
+
+\newcommand{\wxxtbase}[0]{wxxt-\wxver}
+\newcommand{\wxxtlib}[0]{\wxxtbase.tgz}
+\newcommand{\wxxtliburl}[0]{\wxxtftp/\wxxtlib}
+\newcommand{\wxxtutils}[0]{utils.tgz}
+\newcommand{\wxxtutilsurl}[0]{\wxxtftp/\wxxtutils}
+
+\newcommand{\periodntftp}[0]{\periodftp/\periodnt}
+\newcommand{\periodunixversion}[0]{\periodftp/\periodfull}
+\newcommand{\periodsrc}{\periodfull.tgz}
+\newcommand{\periodsrcurl}{\periodftp/\periodsrc}
+\newcommand{\perioddoc}{{\periodnamens}doc-\version.tgz}
+\newcommand{\perioddocurl}{\periodftp/\perioddoc}
+
+\newcommand{\toedit}[0]{{\large XXXX TO EDIT XXXX}}
+
+\newcommand{\linuxitem}[0]{\item \urlref{i386 - Linux}{\periodunixversion-linux}}
+\newcommand{\osfitem}[0]{\item \urlref{Alpha - OSF1}{\periodunixversion-osf}}
+\newcommand{\periodbinaries}[0]{\linuxitem \osfitem}
+
+% defines
+\newcommand{\menu}[1]{{\it menu ``#1''}}
+\newcommand{\menuentry}[1]{{\it menu entry ``#1''}}
+\newcommand{\button}[1]{{{\bf ``#1''} button}}
+\newcommand{\note}[1]{{\noindent \normalbox{\noindent {\Large \bf Note: } #1}}}
+\newcommand{\myhead}[3]{\setheader{#1}{#2}{#3}{#3}{#2}{#1}}
+\newcommand{\myfoot}[3]{\setfooter{#1}{#2}{#3}{#3}{#2}{#1}}
+\newcommand{\normskip}[0]{\parskip=10pt}
+\newcommand{\myitemize}[1]{ \parskip=0pt \begin{itemize} \itemsep=0pt {#1} \end{itemize} \normskip}
+
+%title
+\title{Manual for \periodname:\\
+        V\version\\
+        A period search-program for Windows and Unix}
+\author{Martin Sperl}
+\date{August 1997}
+
+% define dafault paragraph spacing
+\normskip
+
+\makeindex
+
+\begin{document}
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+
+\input psbox.tex
+\maketitle
+\cleardoublepage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\cleardoublepage
+\pagestyle{fancyplain}
+\bibliographystyle{plain}
+\pagenumbering{Roman}
+\myhead{{\it CONTENTS}}{}{}
+\myfoot{\thepage}{}{}
+\tableofcontents
+\cleardoublepage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\cleardoublepage
+\chapter*{Copyright notice}%
+\label{HELP_COPYRIGHT}
+\myhead{{\it COPYRIGHT}}{}{}
+\input{copyright}
+\cleardoublepage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\cleardoublepage
+\chapter{Introduction}%
+\label{HELP_INTRODUCTION}
+\pagenumbering{arabic}
+\myhead{{\it CHAPTER \thechapter}}{Introduction}{}
+\input{intro}
+\cleardoublepage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\cleardoublepage
+\chapter{Installing \periodname}
+\myhead{{\it CHAPTER \thechapter}}{Installing \periodname}{}
+\input{install}
+\cleardoublepage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\cleardoublepage
+\chapter{Using \periodname}%
+\label{HELP_HOW_TO_USE}
+\myhead{{\it CHAPTER \thechapter}}{Using \periodname}{}
+\input{using}
+\cleardoublepage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\cleardoublepage
+\chapter{\periodname in detail}%
+\label{HELP_DETAIL}
+\myhead{{\it CHAPTER \thechapter}}{\periodname in detail: basics}{}
+\input{d_basic}
+\clearpage
+\myhead{{\it CHAPTER \thechapter}}{\periodname in detail: time string}{}
+\input{d_timestr}
+\clearpage
+\myhead{{\it CHAPTER \thechapter}}{\periodname in detail: fit}{}
+\input{d_period}
+\clearpage
+\myhead{{\it CHAPTER \thechapter}}{\periodname in detail: Fourier}{}
+\input{d_fourier}
+\clearpage
+\myhead{{\it CHAPTER \thechapter}}{\periodname in detail: log}{}
+\input{d_log}
+\cleardoublepage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\cleardoublepage
+%\chapter{Samples using \periodname}%
+%\label{HELP_SAMPLES}
+%\myhead{{\it CHAPTER \thechapter}}{Samples using \periodname}{}
+%\input{samples}
+%\cleardoublepage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\cleardoublepage
+\appendix
+\chapter{Problems with \periodname}%
+\label{HELP_BUGS}
+\myhead{{\it APPENDIX \thechapter}}{Problems with \periodname}{}
+\input{bugs}
+\cleardoublepage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\cleardoublepage
+\chapter{Frequently asked questions}
+\myhead{{\it APPENDIX \thechapter}}{Frequently asked questions}{}
+\input{faq}
+\cleardoublepage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\cleardoublepage
+%\chapter{Definitions}
+%\myhead{{\it APPENDIX \thechapter}}{Definitions}{}
+%\input{appendix}
+%\cleardoublepage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}

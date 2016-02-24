@@ -1,0 +1,554 @@
+\section{Fit}%
+\label{period.detailed}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Fit folder}%
+\label{period.folder}
+
+\begin{figure}[h]
+$$\image{0cm;0cm}{PFolder.eps}$$%
+\caption{The frequency folder}%
+\label{period.folder.dialog}
+\end{figure}
+
+This folder shows almost all the information regarding the current fit. 
+(In some rare circumstances the 
+\helpref{log folder}{log.detailed}
+may provide more detailed information.)
+
+{\bf Active frequencies}:
+Gives the total number of active frequencies.
+These are the frequencies for which in the frequency table,
+the check box is selected near the frequency number.
+
+{\bf Use weights}
+means: use the time string in a weighted form for the
+least square fit calculation, if it has been selected.
+
+{\bf Zero point}:
+Shows the calculated zero point for the last calculated fit.
+
+{\bf Residuals}:
+Shows the residuals for the last calculated fit.
+
+{\bf Calculations based on:} dialog item indicates which data set
+will be used for the next calculation. Either the {\bf original} 
+or the {\bf adjusted} data.
+
+With the four buttons:
+{\bf Prev X},
+{\bf Prev},
+{\bf Next},
+{\bf Next X}
+scrolling in the frequency list is possible.
+(Prev is short for previous.)
+(X depends on the size of the screen, 
+but can also be specified with a 
+command line switch of {\tt -r$ <$rows$> $} when invoking the 
+program.)
+
+The next view lines give information on some of the frequencies themselves.
+
+The first column gives the {\bf number of the frequency}
+with the possibility to activate or deactivate it by
+selecting the check box.
+
+The next column gives the value of the {\bf frequency} itself.
+In case of a {\bf harmonic} or {\bf frequency combination}
+the contents will be preceded by {\tt``=''} and may be 
+of one of the following formats:
+
+frequency combination:
+\myitemize{
+        \item =fx+fy
+        \item =nfx+mfy or =n*fx+m*fy
+}
+
+harmonic:
+\myitemize{
+        \item =hfx or =h*fx
+}
+
+x,y may be values from 1 to 255, but not be the number
+of the frequency itself or a reference to another frequency
+which is itself a combination. If one of the composing 
+frequencies is not active, the combination is not active either! 
+h may be an integer greater than 1, while m,n can be any integer number.
+
+When entering or editing a frequency value, another feature may make life easy:
+if an arbitrary number of ``+'' and ``-'' are trailing the number, then
+the value of the 
+\helpref{alias gap value}{period.aliasgap} is added to or subtracted from
+the value, as often as ``+'' or ``-'' are given.
+
+The following two columns give the value of the {\bf amplitude}
+and {\bf phase}.
+
+The last column, which is by default not visible, tells
+the current numerical value of a composite frequency or harmonic.
+
+The next 3 buttons start a calculation:
+\myitemize{
+\item \button{Calculate}
+takes the current settings and improves 
+the amplitudes and phases of all active frequencies.
+
+\item \button{Improve all}
+takes the current settings and improves 
+not only amplitudes and phases, but also the frequencies.
+
+\item \button{Improve Special}
+gives full power to the user for calculations, as it allows to 
+decide for every active frequency, amplitude or phase whether it 
+should be a fixed or free parameter.
+This option also allows the calculation of 
+\helpref {amplitude and/or phase variations}{period.ampvar}.
+}
+
+{\bf Import}
+reads in a set of predefined frequencies.
+
+{\bf Export}
+writes out the whole table of frequencies.
+
+{\bf Phase plot}
+allows to display the selected time string as a phase plot to
+a selectable frequency.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Alias gap}%
+\label{period.aliasgap}
+As already mentioned in the
+\helpref{Fit folder}{period.folder},
+a frequency may be shifted up or down by some arbitrary value by placing
+``+'' or ``-'', after the frequency value itself.
+This value is closely connected to the
+spectral window function of the currently selected time string.
+For astronomical reasons, the default is set to 1/365. 
+This value is a good estimate for a time string
+with large gaps (of approximately a year) between 
+densely packed data.
+
+The \helpfigref{alias gap dialog}{period.aliasgap.dialog},
+which can be reached from the \menu{Fit} by selecting the 
+\menuentry{Alias gap}, allows to change this value.
+\begin{figure}[h]
+$$\image{0cm;0cm}{PAliasgap.eps}$$%
+\caption{The ``alias gap'' dialog}%
+\label{period.aliasgap.dialog}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Improve Special}%
+\label{period.special}
+As already mentioned in the description of the 
+\helpref{Fit folder}{period.folder}, {\bf Improve special} gives
+full control over the calculation to make. 
+
+\note{This option should only be used with great care 
+and only after a stable solution has already been reached with the 
+\button{Calculate} or \button{Improve}.}
+
+\note{Improve automatically 
+does a calculate before trying to improve the frequencies as well! 
+This safeguard has not been implemented for {\bf Improve Special},
+as this might effect the desired result in unwanted ways.}
+
+The \helpfigref{improve special dialog}{period.special.dialog}
+basically contains 3 list boxes. 
+These list the frequency, amplitude, and phase for every active frequency.
+For ease of recognition, in front of each value the number of the 
+frequency itself is written.
+As for the frequency list, frequencies that are combinations or 
+harmonics are not listed.
+
+\begin{figure}[h]
+$$\image{0cm;0cm}{PSpecial.eps}$$%
+\caption{The ``improve special'' dialog}%
+\label{period.special.dialog}
+\end{figure}
+
+As an example, a list of predefined frequencies (f1, f2 and f3) is already 
+known, and should stay fixed. But other additional frequencies (f4 to f10) 
+should be improved. 
+Then in the list box with the frequencies all frequencies
+but the first three should be selected, as well as all the amplitudes
+and phases.
+
+The three buttons in the bottom allow different calculation modes.
+\myitemize{
+\item \button{Calculate} gives the requested calculation
+\item \button{Calculate amplitude/phase variations} opens up another dialog,
+        giving access to an even more specialised calculation mode.
+        See \helpref{Amplitude/phase variations}{period.ampvar}
+        for details.
+\item \button{Cancel} stops the calculation.
+}
+
+\note{Interpretation of the log output of the {\bf Fit} module:\\
+It will output a before/after scenario with all the active Frequencies listed.
+Values that have leading and trailing asterisk are free parameters to the fit.
+The others are fixed. }
+
+\note{And a final note: the {\bf zero point} is {\it always} a free parameter!}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Calculate amplitude/phase variations}%
+\label{period.ampvar}
+
+The last and most sophisticated calculation mode provided by the
+{\bf fit module} is the {\bf Amplitude/Phase variation mode}.
+This allows to analyze data where 
+amplitudes and/or phases have different values, for different subsets 
+of the currently selected time string.
+
+An example for this is the observation of daily 
+high and low temperature averages.
+Or a star that changes intrinsically its amplitude for some frequency. 
+Also measuring an object in two filters generally gives different amplitudes
+and phases for each filter.
+
+Why is this calculation mode necessary? 
+Fitting different subsets is possible 
+and should give the same results.
+
+This is not fully true, as precision of the final result
+gets lost. Not only because of the limited number of points, but also
+because the frequency for each of these subsets will yield a slightly 
+different result when using {\bf improve} for calculation. 
+Thus the results are not fully comparable, especially when large datasets
+with huge gaps (say maybe 10 years) are used.
+
+But will {\bf calculate} or {\bf improve special} not do the magic to 
+some extent? True again, but again a certain frequency has to be assumed
+from the start for all subsets, which will still not represent the
+best fit.
+
+But a blind eye shot with this new tool will not give necessarily the
+wanted results either. Because, when the degrees of freedom are increased
+for the calculations (and that is what amplitude/phase variation does!),
+the numerical stability may be compromised.
+
+So this tool should only be used with great caution and the 
+number of frequencies,
+which are tested for amplitude and/or phase variations, should be kept 
+to a minimum. Other techniques should be used first to find such variations
+and only {\it then} this tool should be used.
+
+The other techniques are: calculating values for different subsets
+and the more optical approach of using the
+\helpref{phase plot}{period.phase} feature of the {\bf fit module}.
+
+After the \button{Calculate amplitude/phase variations} has been pressed
+in the \helpref{Improve special dialog}{period.special}, the
+\helpfigref{amplitude/phase variation dialog}{period.ampvar.dialog} shows up.
+
+\begin{figure}[h]
+$$\image{0cm;0cm}{PAmpvar.eps}$$%
+\caption{The ``amplitude/phase variation'' dialog}%
+\label{period.ampvar.dialog}
+\end{figure}
+
+First an {\bf attribute} has to be chosen, for which its selected labels 
+define subsets of the time string.
+
+Then the {\bf calculation mode} has to be selected. 
+Possibilities are:
+\myitemize{
+\item amplitude variation
+\item phase variation
+\item amplitude and phase variation
+}
+
+And finally the {\bf frequencies} for which amplitude/phase 
+variation should be done, have to be selected. The ones not selected 
+are assumed to have the same amplitude and phase for all points.
+
+The \button{Calculate} starts the calculation. 
+As the \helpref{fit folder}{period.folder} does not offer
+the possibility to show the complex results in its window,
+a new dialog shows up, which tabulates the result.
+
+The \helpref{fit folder}{period.folder} will only reflect 
+changes to the values, for which separate amplitude and phase variation
+has not been done.
+
+The residuals are calculated correctly and individual residuals for
+the subsets can be examined with the 
+\helpref{Adjust selection}{timestring.adjust} tool in the
+\helpref{Time string module}{timestring.folder}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Calculate message}%
+\label{period.calculate}
+When calculating a fit the main window will change its appearance 
+to the following:
+\begin{figure}[h]
+$$\image{0cm;0cm}{PCalculate.eps}$$%
+\caption{The ``calculate status'' window}%
+\label{period.calculate.message}
+\end{figure}
+
+It informs about the current state of calculations, 
+where the first number is the number of iterations already done.
+The second number tells at what number of iterations the program will stop 
+iterating and ask for advice.
+
+With the \button{Cancel} the calculation can be stopped prematurely.
+In this case, the result may not be a stable solution.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Predict signal}%
+\label{period.predict}
+With the \menuentry{Predict} in the \menu{Fit} it is possible to 
+predict an amplitude at a certain time from the current fit.
+The \helpfigref{predict amplitude dialog}{period.predict.dialog} only
+allows to enter a {\bf time} and the \button{Calculate}
+will update the display accordingly.
+\begin{figure}[h]
+$$\image{0cm;0cm}{PPredict.eps}$$%
+\caption{The ``predict amplitude'' dialog}%
+\label{period.predict.dialog}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Create artificial data}%
+\label{period.artificial}
+With the
+\helpfigref{create artificial data dialog}{period.artificial.dialog},
+which can be activated by selecting the
+\menuentry {Create artificial data} from the \menu{Fit}, 
+it is possible to create an equally spaced artificial time string.
+\begin{figure}[h]
+$$\image{0cm;0cm}{PArtificial.eps}$$%
+\caption{The ``create artificial data'' dialog}%
+\label{period.artificial.dialog}
+\end{figure}
+
+To do so, \period has to know about the {\bf start} and {\bf end time} 
+for the selected time span
+and as well the {\bf steps} in between
+defaults for this values are: first and last time of the 
+currently selected time string and for the step 1/(20*Fmax) to give a good 
+sampling for the highest frequency as well.
+
+{\bf Leading/trailing} allows to extend the time span defined by start
+and end in both directions further by a common value.
+
+After pressing the \button{Append to file} or the \button{Create new file}
+a file needs to be selected. For {\it append} the data will be appended
+to the file, and with {\it create} a new file will be created, and 
+the old file destroyed.
+
+
+To create artificial data with times from the currently selected time string,
+the ``wished'' frequencies should be entered in the 
+\helpref{Fit folder}{period.folder} and then the 
+\menuentry{Recalculate residuals} in the \menu{Fit} should be used to 
+\helpref{recalculate the residuals}{period.recalculate}.
+Then the calculated values can be exported with 
+\helpref{Time string export}{timestring.export}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Recalculate residuals}%
+\label{period.recalculate}
+With the \menuentry{Recalculate residuals} in the \menu{Fit}, it is 
+possible to update the residuals using the values of the current fit.
+In addition, the zero point will be asked in the
+\helpfigref{zero point dialog}{period.residuals.dialog}
+before the calculations are done.
+\begin{figure}[h]
+$$\image{0cm;0cm}{PZeropoint.eps}$$%
+\caption{The ``zero point'' dialog}%
+\label{period.residuals.dialog}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Epochs}%
+\label{period.epochs}
+The time of maximum light closest to a certain time (epoch) according 
+to the current fit can be calculated by selecting the
+\menuentry{Epoch} in the \menu{Fit}.
+
+Then the \helpfigref{epoch dialog}{period.epochs.dialog} will show up,
+which basically lists the table of frequencies along with the epoch.
+{\bf Time of epoch} gives the time, for which the epochs should be calculated.
+And {\bf Data is in intensity} allows for correct interpretation of 
+maximum light. By default magnitudes are assumed!
+
+\begin{figure}[h]
+$$\image{0cm;0cm}{PEpochs.eps}$$%
+\caption{The ``epoch'' dialog}%
+\label{period.epochs.dialog}
+\end{figure}
+
+The \button{Calculate} will update these results.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Import frequencies}%
+\label{period.import}
+To import a table of frequencies, all that is needed to do is
+to press the \button{Import} in the \helpref{Fit folder}{period.folder}%
+. Then a file selector dialog will show up and a file to 
+read in may be selected.
+
+The table of frequencies will be erased and the information will be filled
+in.
+
+The file format is the following for {\it each} line:
+\myitemize{
+\item Frequency identifier: in the format: F$<$num$>$ or f$<$num$>$
+\item if a bracket is the next character, then the frequency is 
+        assumed to be inactive
+\item frequency
+\item amplitude (optional)
+\item phase (optional)
+\item additional data ignored
+}
+
+Lines starting with ``/'', ``;'', ``\#'', ''\%''
+are assumed to be comment lines.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Export frequencies}%
+\label{period.export}
+To export the table of frequencies, all that is needed to do is
+to press the \button{Export} in the \helpref{Fit folder}{period.folder}.
+Then a file selector dialog will show up and a filename to save
+may be selected.
+
+For the format of the output file please see
+\helpref{Import frequencies}{period.import}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Phase plot}%
+\label{period.phase}
+As a last tool, the {\bf Fit module} offers the possibility of phase plotting
+the selected time string. This tool has been in use for a long time 
+and has had its prime time in the early days of asteroseismology. 
+Nowadays this tool is scarcely used, even though
+it can prove to be a powerful visual diagnostic tool.
+It allows to view the shape of a light curve not in numbers 
+but visually. And this possibility can help finding a solution to some,
+otherwise possibly overlooked, properties in the data.
+
+The plot basically uses the the reminder of time of a point multiplied by a
+certain frequency, which can be edited by the user, 
+as abscissa, and as Y-Axis most frequently residuals
+(of any kind - Original or Adjusted) to plot a point.
+
+By default, \period tries to find a frequency in the list of frequencies, 
+that has not been activated and chooses the first one found.
+This frequency is displayed in the top part of the graph. 
+If none is found, then a frequency of 1.0 is chosen.
+
+The point itself is plotted as a filled circles with a color that
+corresponds to the color of one of its attributes labels.
+To change the the attribute to use for to select the color,
+the \menu{Color} is used. 
+(See \helpref{Edit name properties}{timestring.edit} in the
+\helpref{Time string folder}{timestring.folder}) for how to
+change the color for a label.)
+
+With the \menu{Data} the data to be displayed on the Y-axis can be selected.
+
+For explanation of the {\bf Color, Data and Zoom menus} please see
+the documentation on \helpref{Time string graph}{timestring.graph}.
+
+Some of the possible uses of this graph are:
+\myitemize{
+\item finding systematic changes of amplitudes 
+        in different subsets of the time string.
+\item finding systematic changes of phases 
+        in different subsets of the time string.
+\item detecting ``bad'' data, which do not follow the average
+        ``light curve shape'' for whatever reason.
+\item reveals the ``true'' ``light curve shape'', as the light curve
+        does not have to be sinusoidal, but still periodic.
+}
+
+\note{Note: with {\bf harmonic frequencies}, that can be entered
+in the frequency table, these light shapes may be ``approximated'' 
+quite accurately and  thus be removed from the residuals.} 
+
+
+So, how does it work? Bringing up the 
+\helpfigref{Phase plot}{period.phase.window}
+is as easy as pressing the \button{Phase plot} in the
+\helpref{Fit folder}{period.folder}.
+\begin{figure}[h]
+$$\image{0cm;0cm}{PPhase.eps}$$%
+\caption{The ``phase plot'' window}%
+\label{period.phase.window}
+\end{figure}
+
+The \menu{Frequency} gives all the necessary possibilities that have to do
+with the graph, like changing the frequency used for calculating
+the phase of a point,
+or to activate the {\bf binning feature}, which allows to extract the 
+light shape ``corresponding''to this frequency. 
+For closer detail please see \helpref{Binning}{period.phase.binning}.
+
+The values from which the graph has been created, can be written out in a 
+similar manner as the normal 
+\helpref{time string export}{timestring.export}%
+. The only difference is that instead of time, phase is written out.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Binning}%
+\label{period.phase.binning}
+As already mentioned, the ``Phase plot'' also offers the possibility of 
+binning, which is averaging data for discrete phase ranges 
+and displaying these values along with error bars.
+Additionally, a spline like curve is fitted to the data resulting from this 
+procedure.
+
+The size of the bin box can be changed by selecting the
+\menuentry{binning spacing} in the \menu{Frequency}.
+Then the \helpfigref{Binning spacing dialog}{period.phase.binning.dialog}
+will open up and ask for a new value. This value should be in the 
+range of {\bf 0} and {\bf 1} exclusively!
+\begin{figure}[h]
+$$\image{0cm;0cm}{PPhaseBinning.eps}$$%
+\caption{The ``binning'' dialog}%
+\label{period.phase.binning.dialog}%
+\end{figure}
+
+The binned values can also be exported to a file by selecting the
+\menuentry{Export binned} in the \menu{File}. This file contains
+3 columns: phase, mean amplitude and sigma of mean.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Frequency choice}%
+\label{period.phase.frequency}
+If the frequency used in the graph needs to be changed, then the 
+\menuentry{Change Frequency} in the \menu{Frequency} should be selected.
+This opens up the 
+\helpfigref{frequency choice dialog}{period.phase.frequency.dialog}.
+\begin{figure}[h]
+$$\image{0cm;0cm}{PPhaseFrequency.eps}$$%
+\caption{The ``frequency choice'' dialog}%
+\label{period.phase.frequency.dialog}
+\end{figure}
+
+This Dialogs contains a list box, that
+lists all deactivated frequencies, as \period assumes
+that activated frequencies already have been prewhitened.
+Selecting one of these and pressing the \button{OK} selects
+this frequency and updates the graph and binning accordingly.
+
+If a totally different frequency needs to be selected, then there is also
+the ``Choose different value'' in the list box.
+When this has been selected the 
+\helpfigref{custom frequency dialog}{period.phase.frequency.other.dialog}
+will show up, and a new frequency can be entered.
+\begin{figure}[h]
+$$\image{0cm;0cm}{PPhaseFrequencyother.eps}$$%
+\caption{The ``custom frequency'' dialog}%
+\label{period.phase.frequency.other.dialog}
+\end{figure}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "period98"
+%%% End: 

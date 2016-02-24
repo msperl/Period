@@ -1,0 +1,30 @@
+(TeX-add-style-hook "d_timestr"
+ (function
+  (lambda ()
+    (LaTeX-add-labels
+     "timestring.detailed"
+     "timestring.folder"
+     "timestring.folder.dialog"
+     "timestring.import"
+     "timestring.import.dialog"
+     "timestring.export"
+     "timestring.export.dialog"
+     "timestring.rename"
+     "timestring.rename.dialog"
+     "timestring.subdivide"
+     "timestring.subdivide.dialog"
+     "timestring.adjust"
+     "timestring.adjust.dialog"
+     "timestring.edit"
+     "timestring.edit.dialog"
+     "timestring.table"
+     "timestring.table.window"
+     "timestring.changeattribute"
+     "timestring.changeattribute.dialog"
+     "timestring.graph"
+     "timestring.graph.window"
+     "timestring.graph.viewport"
+     "timestring.graph.viewport.dialog"
+     "timestring.default"
+     "timestring.default.dialog"))))
+

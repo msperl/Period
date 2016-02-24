@@ -1,0 +1,23 @@
+; This file is maintained by HCW. Do not modify this file directly.
+
+[OPTIONS]
+COMPRESS=12 Hall Zeck
+ERRORLOG=z:\peri4win\doc\winhelp\period98.log
+LCID=0x809 0x0 0x0 ; English (British)
+REPORT=Yes
+FTS=31
+CONTENTS=Contents
+TITLE=Period98
+CNT=z:\peri4win\doc\winhelp\period98.cnt
+BMROOT=z:\peri4win\doc\winhelp
+HLP=z:\peri4win\doc\winhelp\period98.hlp
+
+[FILES]
+z:\peri4win\doc\winhelp\period98.rtf
+
+[WINDOWS]
+Main="Period98",(553,102,400,600),60672,(r14876671),(r12632256),f3
+
+[CONFIG]
+CreateButton("Up", "&Up", "JumpId(`period98.hlp', `Contents')")
+BrowseButtons()

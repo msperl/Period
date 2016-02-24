@@ -1,0 +1,80 @@
+# WXXT base directory
+WXBASEDIR=@WXBASEDIR@
+
+# set the OS type for compilation
+OS=@OS@
+# compile a library only
+RULE=gbin
+
+GENERALSRCS = complex.cpp matrix.cpp str.cpp version.cpp
+GENERALOBJS = complex.o matrix.o str.o version.o compiled.o
+
+DATASRCS =\
+project.cpp display.cpp pdisplay.cpp \
+pperiod.cpp ppercalc.cpp pfourier.cpp ptimestr.cpp \
+dfcalc.cpp dfnoise.cpp dfourier.cpp dfroutin.cpp \
+dperiod.cpp dperipnt.cpp dproutin.cpp \
+dtimepnt.cpp dtimestr.cpp dtnames.cpp \
+dcolors.cpp
+DATAOBJS =\
+project.o display.o pdisplay.o\
+pperiod.o ppercalc.o pfourier.o ptimestr.o \
+dfcalc.o dfnoise.o dfourier.o dfroutin.o \
+dperiod.o dperipnt.o dproutin.o \
+dtimepnt.o dtimestr.o dtnames.o \
+dcolors.o
+
+GUISRCS =\
+wxtxtprint.cpp \
+\
+xmain.cpp xgprojec.cpp xgeneral.cpp \
+xgmainfr.cpp xgmenu.cpp xgmamenu.cpp xgmenuac.cpp xgdialog.cpp \
+xggraph.cpp xggrmenu.cpp xgtable.cpp xgtamenu.cpp xgfilefo.cpp \
+xfdialog.cpp xfgraph.cpp xftable.cpp xfnoise.cpp xfmenu.cpp \
+xpdialog.cpp xpgraph.cpp xpfreq.cpp xppredic.cpp xpspecia.cpp xpmenu.cpp \
+xtdialog.cpp xtgraph.cpp xttable.cpp xtadjust.cpp xtrename.cpp xtmenu.cpp \
+xlmenu.cpp
+GUIOBJS =\
+wxtxtprint.o \
+\
+xmain.o xgprojec.o xgeneral.o \
+xgmainfr.o xgmenu.o xgmamenu.o xgdialog.o xgmenuac.o\
+xggraph.o xggrmenu.o xgtable.o xgtamenu.o xgfilefo.o \
+xfdialog.o xfgraph.o xftable.o xfnoise.o xfmenu.o\
+xpdialog.o xpgraph.o xpfreq.o xppredic.o xpspecia.o xpmenu.o\
+xtdialog.o xtgraph.o xttable.o xtadjust.o xtrename.o xtmenu.o\
+xlmenu.o
+
+# define library name
+BIN_TARGET=Period98
+# define library sources
+BIN_SRC=\
+$(GENERALSRCS) \
+$(DATASRCS) \
+$(GUISRCS)
+
+#define library objects
+BIN_OBJ=\
+$(GENERALOBJS) \
+$(DATAOBJS) \
+$(GUIOBJS)
+
+# additional things needed to link
+BIN_LINK= -lwxTab
+
+# additional things needed to compile
+ADD_COMPILE= -I$(UTILS)/wxTab
+
+# include the definitions now
+include ../../../template.mak
+
+compiled.cpp:: $(BIN_SRC)
+	@ echo creating compiled.cpp
+	@(\
+	 QUOTE='"';\
+	 USER="`whoami`@`hostname`";\
+	 DATE=`date +'%Y-%m-%d-%H:%M'`;\
+	 echo "const char *compiledbytxt=$$QUOTE$$USER$$QUOTE;"> compiled.cpp;\
+	 echo "const char *compileddatetxt=$$QUOTE$$DATE$$QUOTE;">>compiled.cpp;\
+	)
+	@ touch ../mscomp.cpp

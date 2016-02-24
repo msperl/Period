@@ -1,0 +1,17 @@
+#! /bin/sh
+
+# this is the main directory of the installation
+PERIOD98DIR="<INSTALLDIR>"
+
+# these are the necessary environment variables
+BINARIESDIR="$PERIOD98DIR/bin"
+WXHELPFILES="$PERIOD98DIR/doc"
+PERIOD98_AFM_PATH="$PERIOD98DIR/afm"
+# now ste the path to include the binaries
+PATH="$BINARIESDIR:$PATH"
+
+export BINARIESDIR WXHELPFILES PERIOD98DIR PATH
+
+#and finally start period98
+exec $BINARIESDIR/Period98 $@
+
