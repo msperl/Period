@@ -88,6 +88,14 @@ int p_Graph_Frame::ReverseScaleY()
 void p_Graph_Frame::CalcExtrems()
 {
   int SelectedPoints=mData->GetSelectedPoints();
+  if (SelectedPoints==0)
+    {
+      ExtXMax=1.0f;
+      ExtYMax=1.0f;
+      ExtXMin=0.0f;
+      ExtYMin=0.0f;
+      return;
+    }
 
   // Get extrems in x
   ExtXMax=float((*mData)[SelectedPoints-1].GetTime());

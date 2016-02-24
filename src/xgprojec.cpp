@@ -24,6 +24,7 @@
 #include "xgmainfr.h"
 #include "ldialtxt.h"
 #include "px.h"
+#include "error.h"
 
 wxPeriProject myProject;
 
@@ -33,8 +34,7 @@ wxPeriProject myProject;
 volatile double MSVC_FLOAT_TRAP=0.0f;
 #endif
 
-#define USERMESSAGE(x) cerr<<"Trapped Message:"<< x <<endl;myProject.InformUser( x );
-
+#define USERMESSAGE(x) MYERROR(x);myProject.InformUser( x );
 
 // signal handlers
 void Signal_Handler(int sig)

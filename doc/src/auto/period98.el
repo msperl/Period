@@ -17,8 +17,6 @@
      '("menuentry" 1)
      '("menu" 1)
      '("periodbinaries" 0)
-     '("osfitem" 0)
-     '("linuxitem" 0)
      '("toedit" 0)
      '("periodunixversion" 0)
      '("periodntftp" 0)
