@@ -2,7 +2,5 @@
  (function
   (lambda ()
     (LaTeX-add-labels
-     "log.detailed"
-     "log.folder"
-     "log.folder"))))
+     "log.detailed"))))
 

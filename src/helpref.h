@@ -7,6 +7,7 @@
  * Created:     1996
  * Copyright:   (c) 1996-1998, Martin Sperl
  */
+#define HELP_FILE      "period98"
 #ifdef wx_msw
 #define HELP_COPYRIGHT "Copyright notice"
 #define HELP_INTRODUCT "What is Period98?"

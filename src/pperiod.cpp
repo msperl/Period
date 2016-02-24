@@ -24,6 +24,7 @@ void CProject::CleanPeriod()
     {
       Period[i]=empty;
     }
+  UpdatePEDisplays();
 }
 
 myString CProject::GetNumber(int i) const
