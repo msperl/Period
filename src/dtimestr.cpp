@@ -416,7 +416,12 @@ void CTimeString::Load(myString const &fname)
   char line[2048];
   double t, m,a,c,pw;
   int n1,n2,n3,n4;
-  file=fopen(fname.chars(),"r");
+
+
+  if (fname.Compare("-")==0)
+    file=stdin;
+  else
+    file=fopen(fname.chars(),"r");
   if (file==0)
     {
       MYERROR("Problems opening file:"<<fname<<"- does it exist?");
