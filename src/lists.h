@@ -509,36 +509,36 @@ protected:
   void addtail(type const & d)
     {
       TList<type>::addtail(d);
-      lastadded=Tail;
+      lastadded=TList<type>::Tail;
     }
   
   ///
   void addhead(type const & d)
     {
       TList<type>::addhead(d);
-      lastadded=Head;
+      lastadded=TList<type>::Head;
     }
   
 public:
   ///
   void add(type const &d)
     {
-      if (Count==0)
+      if (TList<type>::Count==0)
 	{
 	  addhead(d);
 	  return;
 	}
-      if (Tail->Data<=d)
+      if (TList<type>::Tail->Data<=d)
 	{
 	  addtail(d);
 	  return;
 	}
-      if (d<Head->Data)
+      if (d<TList<type>::Head->Data)
 	{
 	  addhead(d);
 	  return;
 	}
-      TLinked<type>*tmp=Head;
+      TLinked<type>*tmp=TList<type>::Head;
       if (lastadded!=0)
 	if (lastadded->Data<=d)
 	{
