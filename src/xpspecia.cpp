@@ -503,6 +503,19 @@ void EpochDialog(wxWindow *Frame)
 				 GENERAL_BUTTON_HANDLER,
 				 CANCEL);
   Cancel->SetClientData(0);
+
+  dialog.NewLine();
+
+  wxButton *Print= new wxButton(&dialog,
+			       GENERAL_BUTTON_HANDLER,
+			       ADJ_DAT_PRINT);
+  Print->SetClientData(0);
+
+  wxButton *Save= new wxButton(&dialog,
+			       GENERAL_BUTTON_HANDLER,
+			       ADJ_DAT_SAVE);
+  Save->SetClientData(0);
+
   
   // now fit the dialog
   dialog.Fit();
@@ -512,14 +525,18 @@ void EpochDialog(wxWindow *Frame)
   // repeat until the user presses cancel
   while (!quit)
     {
+      // Output string
+      myString txt;
       // reset values at first
       Calc->SetClientData(0);
       Cancel->SetClientData(0);
+      Print->SetClientData(0);
+      Save->SetClientData(0);
       // fill listbox
       {
 	// calculate the epochs
-	myString txt=myProject.ShowEpoch(EpochTime->GetValue(),
-					 myProject.GetReverseScale());
+	txt=myProject.ShowEpoch(EpochTime->GetValue(),
+				myProject.GetReverseScale());
 	// clear list
 	EpochList->Clear();
 	// fill in list
@@ -564,6 +581,9 @@ void EpochDialog(wxWindow *Frame)
 	int width=(dw-spacing)/2;
 	Calc->SetSize(Calcx,-1,width,-1);
 	Cancel->SetSize(Calcx+spacing+width,-1,width,-1);
+
+	Print->SetSize(Calcx,-1,width,-1);
+	Save->SetSize(Calcx+spacing+width,-1,width,-1);
 	dialog.Fit();
       }
       // and now show it...
@@ -575,6 +595,32 @@ void EpochDialog(wxWindow *Frame)
 	  // cancel has been pressed, so let's exit
 	  quit=TRUE;
 	}      
+      // check if Print pressed
+      if (Print->GetClientData())
+	{
+	  // print txt;
+	  wxPrintText(NULL,"",txt.chars(),
+		      50,
+#ifdef wx_msw
+		      16,
+#else
+		      12,
+#endif
+		      wxMODERN,wxNORMAL,wxNORMAL
+		      );
+	  quit=false;
+	}
+      // check if Save pressed
+      if (Save->GetClientData())
+	{
+	  // save txt;  
+	  char *filename=wxFileSelector(ADJ_DAT_SAVE);
+	  if (filename) {
+	    ofstream file(filename);
+	    file<<txt<<endl;
+	  }
+	  quit=false;
+	}
     }
 }
 

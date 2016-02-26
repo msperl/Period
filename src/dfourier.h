@@ -18,7 +18,7 @@
 #include "str.h"
 
 #include "dtimestr.h"
-#include "dperiod.h"
+#include "dperipnt.h"
 #include "error.h"
 
 ///

@@ -209,7 +209,7 @@ const char * FreqCompo::GetCompositionString() const
       else
 	{
 	  // everything needed
-	  sprintf(tmp,"%if%i",Factor,Freq+1);
+	  sprintf(tmp,"%gf%i",Factor,Freq+1);
 	}
     }
   // return the string
@@ -250,7 +250,8 @@ void CFreqCompPeriPoint::SetCompositeString(const char * f)
       // Yes it seems to be...
       //is next character a nummeric?
       int pos=1;
-      int fac=1,freq=-1;
+      double fac=1;
+      int freq=-1;
       char num[256];
       char c=tmp[pos];
       if (isdigit(c)||(c=='+')||(c=='-'))
@@ -264,14 +265,14 @@ void CFreqCompPeriPoint::SetCompositeString(const char * f)
 	      num[i++]=c;
 	      pos++;
 	    }
-	  while (isdigit(tmp[pos]))
+	  while (isdigit(tmp[pos])||(tmp[pos]=='.'))
 	    {
 	      // copy character
 	      num[i++]=tmp[pos++];
 	    }
 	  num[i]=0;
 	  // now get the factor
-	  sscanf(num,"%i",&fac);
+	  sscanf(num,"%lf",&fac);
 	}
       if (tmp[pos]=='*') { pos++; /* ignore the factor sign*/}
       if ((tmp[pos]!='f')&&(tmp[pos]!='F'))
@@ -341,14 +342,14 @@ void CFreqCompPeriPoint::SetCompositeString(const char * f)
 	      // copy the sign
 	      num[i++]=c;
 	      pos++;
-	      while (isdigit(tmp[pos]))
+	      while (isdigit(tmp[pos])||(tmp[pos]=='.'))
 		{
 		  // copy character
 		  num[i++]=tmp[pos++];
 		}
 	      num[i]=0;
 	      // now get the factor
-	      sscanf(num,"%i",&fac);
+	      sscanf(num,"%lf",&fac);
 	      if (tmp[pos]=='*') { pos++; /* ignore the factor sign*/}
 	    }
 	  if ((tmp[pos]!='f')&&(tmp[pos]!='F'))
@@ -495,7 +496,7 @@ int CFreqCompPeriPoint::FindDependance(int freq)
   return -1;
 }
 
-int CFreqCompPeriPoint::AddDependency(int factor, int freq, CFreqCompPeriPoint * ptr)
+int CFreqCompPeriPoint::AddDependency(double factor, int freq, CFreqCompPeriPoint * ptr)
 {
   if (ptr==0)
     {

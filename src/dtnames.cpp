@@ -343,16 +343,3 @@ int CNames::GetHighestActiveIDName() const
     }
   return active;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

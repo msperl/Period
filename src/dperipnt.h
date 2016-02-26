@@ -425,13 +425,14 @@ public:
     : Freq(-1),Factor(0),pnt(0)
     {}
   ///
-  int GetOtherFactor() { return Factor; }
+  double GetOtherFactor() { return Factor; }
   ///
-  void SetOtherFactor(int fac) { Factor=fac; }
+  void SetOtherFactor(double fac) { Factor=fac; }
   ///
   int GetOtherFrequency() { return Freq; }
   ///
-  void SetOtherFrequency(int freq) { Freq=freq; pnt=0; } //@ManMemo: should only be called from CleanComposition
+  void SetOtherFrequency(int freq) { Freq=freq; pnt=0; } 
+  //@ManMemo: should only be called from CleanComposition
   void SetPointer(int fr, CFreqCompPeriPoint* pt);
   ///
   void GetPointer(int *fr, CFreqCompPeriPoint **pt) {*fr=Freq; *pt=pnt;};
@@ -457,7 +458,7 @@ protected:
   ///
   int Freq;
   ///
-  int Factor;
+  double Factor;
   ///
   CFreqCompPeriPoint *pnt;
 };
@@ -481,7 +482,11 @@ public:
     }
 
   ///
-  void SetFrequency(double freq) { CleanComposition(); CAmpVarPeriPoint::SetFrequency(freq); }
+  void SetFrequency(double freq) 
+    { 
+      CleanComposition(); 
+      CAmpVarPeriPoint::SetFrequency(freq); 
+    }
 
   ///
   int IsComposition() const { return IsCompo; }
@@ -495,7 +500,7 @@ public:
   ///
   int FindDependance(int freq);
   ///
-  int AddDependency(int factor, int freq, CFreqCompPeriPoint * ptr);
+  int AddDependency(double factor, int freq, CFreqCompPeriPoint * ptr);
   ///
   void RemoveDependency(int freq);
   ///

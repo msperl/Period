@@ -235,6 +235,7 @@ myString CProject::GetNameStats(int id,int i,int useweighted,int *ident)
   sigma=0;
   average=0;
   char* isadj;
+  *ident=0;
   if (data->GetSelect()&&(data->GetPoints()!=0))
     {
       if (useweighted)
@@ -264,6 +265,7 @@ myString CProject::GetNameStats(int id,int i,int useweighted,int *ident)
 	    }
 	}
       // check if mean values are the same for both
+	  isadj="!!!";
       if (fabs(data->GetAverageAdj()-data->GetAverageOrig())>1e-14)
 	{
 	  isadj=DIALOG_ADJUST_YES;
@@ -276,7 +278,7 @@ myString CProject::GetNameStats(int id,int i,int useweighted,int *ident)
     }
   else
     {
-      *ident=-99;
+      *ident=-99;isadj="!!!";
     }
   sprintf(tmp,DIALOG_ADJUST_FORMAT,
 	  data->GetName().chars(),
@@ -308,7 +310,9 @@ myString CProject::StatStrings(int what,int weighted,int header)
   for (int i=0;i<NumberOfNames(what);i++)
     {
       int ident;
-      tmp+=GetNameStats(what,i,weighted,&ident)+"\n";
+      myString line=GetNameStats(what,i,weighted,&ident)+"\n";
+      if (ident!=-99)
+        {tmp+=line;}
     }
   return tmp;
 }
@@ -337,7 +341,6 @@ void CProject::LoadTimeString(myString name,int append)
       // no filename given?
       return;
     }
-
   // check if file exists
   if (FileExist(name)==0)
     {
@@ -841,7 +844,7 @@ void CProject::SetUseNameWeight(int i)
 
 void CProject::SetUsePointWeight(int i)
 {
-  Timestring.SetUseNameWeight(i);
+  Timestring.SetUsePointWeight(i);
   if (i)
     { Write()<<PROTOCOL_WEIGHT_POINT_ON<<endl; }
   else

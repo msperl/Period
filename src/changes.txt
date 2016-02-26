@@ -1,5 +1,8 @@
 Changes from previous versions:
 
+V1.0.7: 7 July 1998 (Martin Sperl)
+	* Bugs fixed with adjust timestring dialog
+
 V1.0.6: 23.June 1998 (Martin Sperl)
 	* compiled static for Alpha
 	* changes.txt started

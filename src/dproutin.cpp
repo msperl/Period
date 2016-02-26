@@ -39,8 +39,8 @@ int CPeriod::CalcLoop(CTimeString &ti)
   mIterations=0;
   int result=0;
   char txt[256]; 
-  int factor=1;
-  while(1)
+  int factor=1,quit=1;
+  while(quit)
     {
       // fill in percentage
       sprintf(txt,"%i Iterations of possible %i done...",
@@ -54,7 +54,7 @@ int CPeriod::CalcLoop(CTimeString &ti)
 	{
 	  // The determinant could not be determined
 	  // or cancel was pressed, so let us terminate...
-	  break;
+	  quit=0;
 	}
       // check for conditions to quit loop
       chdiff=ch-mChisqr;
@@ -66,9 +66,9 @@ int CPeriod::CalcLoop(CTimeString &ti)
 	  sprintf(text,
 		  "Maximum number of iterations reached\n"
 		  "Do you want to continue?");
-	  if (!AskUserToContinue(text))
+	  if (AskUserToContinue(text)==0)
 	    {
-	      break;
+	      quit=0;
 	    }
 	  else
 	    {
@@ -77,7 +77,7 @@ int CPeriod::CalcLoop(CTimeString &ti)
 	    }
 	}
       if (chdiff<PRCEXT2)
-	{break;}
+	{quit=0;}
     }
   // remove allocated memory, etc...
   Terminate();

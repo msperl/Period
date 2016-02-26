@@ -23,7 +23,7 @@
 
 // Epoch
 #define PROTOCOL_EPOCH_FORMAT_HEADER "Freq. Frequency         Epoch"
-#define PROTOCOL_EPOCH_FORMAT "%5s %17s "FIXEDFORMAT_PHASE
+#define PROTOCOL_EPOCH_FORMAT "%5s %17s "FIXEDFORMAT_EPOCH
 #define PROTOCOL_EPOCH_INTENSITY "Calculating the epoch in intensity "\
                                  "for the active frequencies\n"\
                                  "for the following time: "FORMAT_TIME

@@ -293,7 +293,7 @@ void CMyTable::UpdateDisplay(int flag)
     myPlotArea->SetLineHeight(LineHeight);
   }
   myPlotArea->SetScrollbars(100,LineHeight,
-			    (LineWidth/100)+1,NumberOfLines()+1,
+			    (LineWidth/100)+1,NumberOfLines()+2,
 			    5,5,
 			    x,y);
   // repaint plot

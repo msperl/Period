@@ -24,7 +24,10 @@
 
 #define END -2
 
-#define EXECUTE_CODE if (calc.IsPeak(loc,compact)) {add(CFourierPoint(calc[loc].Freq(),calc[loc].Pow()));}
+#define EXECUTE_CODE \
+if (calc.IsPeak(loc,compact)) {\
+ add(CFourierPoint(calc[loc].Freq(),calc[loc].Pow()));\
+}
 
 
 void CFourier::Transform(CTimeString const &time,double zero)

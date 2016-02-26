@@ -245,7 +245,7 @@ void InformUserOfProgress(char *text)
 
 int AskUserToContinue(char * text)
 {
-  return wxMessageBox(text,"",wxYES_NO|wxCENTRE,MainFrame);
+  return (wxMessageBox(text,"",wxYES_NO|wxCENTRE,MainFrame)==wxYES);
 }
 
 

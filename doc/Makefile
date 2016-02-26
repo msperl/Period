@@ -22,7 +22,8 @@ TEX_ADDITIONAL=\
  src/samples.tex\
  src/bugs.tex\
  src/faq.tex\
- src/appendix.tex
+ src/appendix.tex\
+ src/ref.tex
 
 XPM_ADDITIONAL_FILES=\
  xpm/back.xpm xpm/forward.xpm xpm/contents.xpm xpm/up.xpm\

@@ -13,8 +13,10 @@
      "fancyhea"
      "mysober"
      "mytitle"
+     "astron"
      "p98def"
      "psbox"
      "p98main"
-     "p98appe"))))
+     "p98appe"
+     "ref"))))
 

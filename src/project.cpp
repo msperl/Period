@@ -54,18 +54,33 @@ void CProject::CleanAll()
   // OK, now that we have cleaned everything,
   // there have not been any new changes yet..
   Changed=0;
+  ProjectFile="";
   UpdateAllData();
 }
 
 
 int CProject::FileExist(myString file) const
 {
+  // return 1 for OK, 0 for Bad
   struct stat stbuf;
+  if ((file=="") && (stat(file.chars(),&stbuf)))
+    {return 0;}
 
-  // (char *) cast necessary for VMS
-  if ((file!="") && (stat (file.chars(), &stbuf) == 0))
-    return 1;
-  return 0;
+
+  FILE *open=fopen(file.chars(),"r");
+  if (!open)
+    {return 0;}
+
+  int ret=1;
+  if (fgetc(open)==EOF)
+    { ret=0; }
+
+  if (ferror(open))
+    { ret=0; }
+
+  fclose(open);
+
+  return ret;
 }
 
 int CProject::CanWrite(myString file) const

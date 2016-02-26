@@ -176,7 +176,7 @@ void CProject::ImproveSpecialPeriod(DataMode mode)
 	  Period.RestoreSelection();
 	}
       // restore old datamode
-      Period.SetUseData(old);
+      Timestring.SetDataMode(old);
     }
   // and update all displays
   UpdatePEDisplays();

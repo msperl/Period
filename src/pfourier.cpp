@@ -553,7 +553,8 @@ double CProject::CalculateNoise(double point, double box,
     }
 
   // make the calculations
-  double Noise=NoiseCalc(Timestring,zero,point-box/2,point+box/2,steprate,weight,Mode);
+  double Noise=NoiseCalc(Timestring,zero,point-box/2,point+box/2,
+			 steprate,weight,Mode);
   // check if chacel has been pressed
   if (Noise==-1)
     {

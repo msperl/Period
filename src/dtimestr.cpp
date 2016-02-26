@@ -172,12 +172,18 @@ void CTimeString::SetWeight(SelectedTime time)
   double finalweight;
   // check if user-weights shoudl be used
   if (mNameWeight)
-    {finalweight=weight;}
+    {
+      finalweight=weight;
+    }
   else
-    {finalweight=1.0;}
+    {
+      finalweight=1.0;
+    }
   // check if weights for specific point should be used
   if (mPointWeight)
-    {finalweight*=time->GetPointWeight();}
+    {
+      finalweight*=time->GetPointWeight();
+    }
   // now set weights
   time->SetWeight(finalweight);
 }
@@ -269,17 +275,9 @@ void CTimeString::CalcWeights()
   // iterate over all selected datapoints
   for (int i=0;i<mSelected;i++)
     {
-      // calculate weight
-      tmp=1;
-      for (int j=0;j<4;j++)
-	{
-	  id=mSelection[i]->GetIDName(j);
-	  tmp*=mNames[j].GetIDName(id).GetWeight();
-	}
-      // set weight
-      mSelection[i]->SetWeight(tmp);
+      SetWeight(mSelection[i]);
       // add up weights
-      mWeightSum+=tmp;
+      mWeightSum+=mSelection[i]->GetWeight();
     }
 }
 

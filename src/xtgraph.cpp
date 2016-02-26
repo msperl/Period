@@ -29,6 +29,8 @@
 #define MAXDIST 100
 #define PERCENTAGE 0.05f
 
+#define OFFSET ((XMax-XMin)/100.0)
+
 t_Graph_Frame::t_Graph_Frame(CProject *data,int type,
 			     wxFrame* parent, char*Name,
 			     int x, int y,
@@ -163,6 +165,7 @@ void t_Graph_Frame::DrawPlot(wxDC &DC,float scale)
       NoData(DC);return;
     }
   int i;
+  int plotted=0;
   // Display Points
   {
     int first=0;
@@ -175,12 +178,12 @@ void t_Graph_Frame::DrawPlot(wxDC &DC,float scale)
 	t=GetTime(i);
 	// only plot if data is within range
 	// Time is higher?
-	if (t>XMax)
+	if (t>XMax+OFFSET)
 	  {
 	    break;
 	  }
 	// Time is lower?
-	if (t>XMin)
+	if (t>=XMin-OFFSET)
 	  {
 	    a=GetAmplitude(i);
 	    // Get additional graphics-objects
@@ -200,6 +203,8 @@ void t_Graph_Frame::DrawPlot(wxDC &DC,float scale)
 	    wxPoint tmp=TransformToScreen(t,a);
 	    // plot Data
 	    DC.DrawEllipse(tmp.x-w,tmp.y-w,2*w,2*w);
+            // add plotted;
+            plotted++;
 	  }
       }
   }
@@ -318,12 +323,12 @@ void t_Graph_Frame::RightButtonPressed(wxMouseEvent &event)
       t=GetTime(i);
       // only plot if data is within range
       // Time is higher?
-      if (t>XMax)
+      if (t>XMax+OFFSET)
 	{
 	  break;
 	}
       // Time is on screen
-      if (t>XMin)
+      if (t>XMin-OFFSET)
 	{
 	  // so get Amplitude
 	  a=GetAmplitude(i);

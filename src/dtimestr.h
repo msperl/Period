@@ -85,6 +85,9 @@ public:
   void Load(myString const &Name);
   ///
   void ReadIn(istream& str,int version=0);
+  /// 
+  void AddData(CTimePoint value)
+    { mTimeArray.add(value);}
   ///
   void Save(myString const &Name);
   ///

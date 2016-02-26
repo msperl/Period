@@ -42,7 +42,7 @@
                     "Please save the project\n"\
                     "with a different name.\n"\
                     "Because while saving\n"\
-                    "an error might occure,\n"\
+                    "an error might occur,\n"\
                     "and the file may not contain\n"\
                     "correct data."
 #define SIGNAL_UKN  SIGNAL_PROG\
@@ -481,5 +481,8 @@
 #define SIGNAL            "Signal"
 #define POWER             "Power"
 #define AMPLITUDE         "Amplitude"
+
+#define NOPOINTSTOPLOT    "There are no points to plot in this range!\n"\
+                          "Would like to display all the data?"
 
 #endif

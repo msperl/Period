@@ -65,6 +65,24 @@ BIN_LINK= -lwxTab
 # additional things needed to compile
 ADD_COMPILE= -I$(UTILS)/wxTab
 
+# second binary
+BIN2_TARGET=fserver
+BIN2_SRC=fserver.cpp
+BIN2_OBJ= \
+complex.o \
+dcolors.o \
+dfcalc.o \
+dfnoise.o \
+dfourier.o \
+dfroutin.o \
+dtimepnt.o \
+dtimestr.o \
+dtnames.o \
+dperipnt.o \
+str.o \
+\
+fserver.o
+
 # include the definitions now
 include ../../../template.mak
 
