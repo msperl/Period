@@ -121,6 +121,8 @@ void CProject::RenameSelection(int Column, myString Name)
 
 void CProject::Refit(myString zeropoint)
 {
+  // Update data
+  UpdatePEData();
   // set the Zeropoint
   Period.SetZeropoint(DoubleFromString(zeropoint));
   // recalculate points
@@ -134,7 +136,9 @@ void CProject::Refit(myString zeropoint)
   pro<<txt<<endl;
   sprintf(txt,PROTOCOL_RESIDUALS,Period.GetResiduals());
   pro<<txt<<endl;
+  // Show data
   UpdateTSDisplays();
+  UpdatePEDisplays();
 }
 
 void CProject::ChangeHeading(int i,char *Name)

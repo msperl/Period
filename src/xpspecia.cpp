@@ -454,6 +454,7 @@ void AmplitudeVariationDisplay(wxWindow * frame,char *txt)
       
 void EpochDialog(wxWindow *Frame)
 {
+  myProject.UpdatePEData();
   // create the dialog-box
   myDialogBox dialog(Frame,EPO_TITLE,TRUE,
 		     -1,-1,520,290);

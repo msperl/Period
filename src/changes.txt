@@ -1,5 +1,10 @@
 Changes from previous versions:
 
+V1.0.9: 10 July 1998 (Martin Sperl)
+	* Recalculate Residuals changed, so that changes 
+	  take effect imediately (no Next/Prev needed any longer)
+	  as well for some other menu entries..
+
 V1.0.8: 7 July 1998 (Martin Sperl)
 	* Bugs fixed when reading in the project
 	  (Adjusted values below -100 where set to the

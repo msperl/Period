@@ -33,6 +33,7 @@ void PredictQUIT(wxButton& calc,wxEvent &)
 
 void PredictAmplitude(wxWindow *Frame)
 {
+  myProject.UpdatePEData();
   myDialogBox dialog(Frame,PREDICT_DATE,TRUE,-1,-1,300,130);
   char tmp[256];
   double start=0;
@@ -79,6 +80,7 @@ void PredictAmplitude(wxWindow *Frame)
 
 void CreateArtificialData(wxWindow *Frame)
 {
+  myProject.UpdatePEData();
   myDialogBox dialog(Frame,PREDICT_ART,TRUE,-1,-1,300,220);
 
   // Create Dialogs
