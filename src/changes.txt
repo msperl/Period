@@ -1,5 +1,10 @@
 Changes from previous versions:
 
+V1.0.8: 7 July 1998 (Martin Sperl)
+	* Bugs fixed when reading in the project
+	  (Adjusted values below -100 where set to the
+           observed value)
+
 V1.0.7: 7 July 1998 (Martin Sperl)
 	* Bugs fixed with adjust timestring dialog
 

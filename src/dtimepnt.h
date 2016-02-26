@@ -15,6 +15,8 @@
 #include <iostream.h>
 #include <math.h>
 
+#define NO_ADJUST -99934.2134234325423
+
 ///
 class CTimePoint
 {
@@ -22,7 +24,7 @@ public:
   ///constructor
   CTimePoint(int i=0);
   ///
-  CTimePoint(double t, double o,double a=-99999, 
+  CTimePoint(double t, double o,double a=NO_ADJUST, 
 	     double c=0,double pw=1.0,
 	     int n1=0, int n2=0, int n3=0, int n4=0,int index=0);
   ///destructor

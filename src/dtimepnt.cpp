@@ -20,7 +20,7 @@ CTimePoint::CTimePoint(double t, double o, double a, double c, double pw,
     {
       mRunningIndex=index;
     }
-  if (a<=-100)
+  if (a==NO_ADJUST)
     {
       a=o;
     }
