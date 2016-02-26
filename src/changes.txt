@@ -1,0 +1,14 @@
+Changes from previous versions:
+
+V1.0.6: 23.June 1998 (Martin Sperl)
+	* compiled static for Alpha
+	* changes.txt started
+	* Epochs:	* output with more significant digits
+			* Print and Save Button included
+	* started adding code for distributed Fourier calculation
+	  (not functional)
+
+V1.0.5 and earlier: No information.
+
+
+
